@@ -1,10 +1,10 @@
-Dataset: [Dataset name]
-Source:  [URL]
-Licence: [e.g. Creative Commons Attribution 4.0 International (CC BY 4.0)]
-         [Licence URL]
+Dataset: Impact of Ai on Students
+Source:  https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv
+Licence: CC0 1.0 Universal
+         https://creativecommons.org/publicdomain/zero/1.0/
 
-Downloaded: [YYYY-MM-DD]
-Downloaded by: [Name]
+Downloaded: 2026-05-21
+Downloaded by: Paul Gustav Hoffmann
 
 Notes:
-  [Any restrictions, attribution requirements, or caveats]
+-
