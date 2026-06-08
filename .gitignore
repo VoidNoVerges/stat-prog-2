@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Rproj.user/
+.Rprofile
 
 # Quarto build artefacts
 /.quarto/
@@ -10,3 +11,7 @@ _site/
 # OS
 .DS_Store
 Thumbs.db
+
+**/*.quarto_ipynb
+
+docs
