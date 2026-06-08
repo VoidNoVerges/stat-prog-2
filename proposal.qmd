@@ -10,11 +10,31 @@ date: today
 ## Dataset
 
 <!-- Describe the dataset: source, licence, dimensions, key variables. -->
+The source of the data is:  
+https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv  
+
+The data is licenced under CC0 1.0 Universal:  
+(https://creativecommons.org/publicdomain/zero/1.0/)
+
+*Content:*  
+The dataset "Impact of Ai on Students" is about the generative AI usage of students and its effects on them.
+
+There are 50000 rows representing 50000 observed students. 
+Also 16 observed features are listed in its 16 columns.  
+They capture various key information of the students
+(e.g. their major, study year & GPA score),
+but also how they use generative AI
+(e.g. which tools they use, which usecase they have & their prompting skills).
 
 ## Research Questions
 
-1.
-2.
+*1. In which majors is the GPA most affected by heavier AI Usage?*  
+*2. How is can AI be used for the best GPA score?*
+
+The audience for this analysis are students which want to understand how much AI is good
+and normal to use in their field for a better grade. 
+The overall message is more important then the details for this scenario,
+so simple visualizations like graphs without clutter should work best.
 
 ## Initial EDA
 
@@ -23,11 +43,43 @@ date: today
 library(tidyverse)
 library(here)
 
-# data <- read_csv(here("data", "raw", "data.csv"))
+data <- read_csv(here("data", "raw", "ai_student_impact_dataset (1).csv"))
+
+# data overview
+glimpse(data)
+
+summary(data)
 ```
 
 <!-- Add 2–3 exploratory plots and a brief commentary on what you observe. -->
+```{r}
+ggplot(data, aes(x = Paid_Subscription, y = Tool_Diversity)) + geom_boxplot()
+```
+
+Interestingly the tool diversity doesn't seem to be affected by the student
+using a paid subscription or not.
+```{r}
+ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours)) + geom_boxplot()
+```
+Students in the business sector seem to use AI the most while people who use it the
+last are in the field of humanities.  
+But this
+
+*Issues?*  
+The dataset is pretty clean as it has no missing values or weird formatting.
+Overall there are _no_ issues with the values in the dataset.
 
 ## Analysis Plan
 
 <!-- Outline the methods you plan to use to answer your research questions. -->
+The most important variable I am going to use is the GPA as the goal is to measure
+the student performance affected by AI.  
+For question 1 I also need the weekly generative AI study hours and the
+traditional study hours to measure how heavy the student's AI usage is in procents.
+Other variables like tool diversity might also be interesting for
+this even though less important.  
+For question 2 the variables paid subscriptions and tool diversity are important,
+but also the primary use case.  
+The uncertainties are less of a incomplete or flawed dataset, but which variables are
+fair to be weighed against another to give the best persepctive for the questions.
+
