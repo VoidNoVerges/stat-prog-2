@@ -29,7 +29,7 @@ but also how they use generative AI
 ## Research Questions
 
 *1. In which majors is the GPA most affected by heavier AI Usage?*  
-*2. Does the GPA correlate with paid subscriptions & tool diversity?*
+*2. How is can AI be used for the best GPA score?*
 
 The audience for this analysis are students and
 the goal is to help them understand in which way AI usage is beneficial to the grade.  
