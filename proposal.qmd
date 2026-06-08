@@ -43,10 +43,30 @@ so simple visualizations like graphs without clutter should work best.
 library(tidyverse)
 library(here)
 
-# data <- read_csv(here("data", "raw", "data.csv"))
+data <- read_csv(here("data", "raw", "ai_student_impact_dataset (1).csv"))
+
+# data overview
+glimpse(data)
+
+summary(data)
 ```
 
 <!-- Add 2–3 exploratory plots and a brief commentary on what you observe. -->
+```{r}
+ggplot(data, aes(x = Paid_Subscription, y = Tool_Diversity)) + geom_boxplot()
+```
+
+Interestingly the tool diversity doesn't seem to be affected by the student
+using a paid subscription or not.
+```{r}
+ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours)) + geom_boxplot()
+```
+Students in the business sector seem to use AI the most while people who use it the
+last are in the field of humanities.  
+
+*Issues?*  
+The dataset is pretty clean as it has no missing values or weird formatting.
+Overall there are _no_ issues with the values in the dataset.
 
 ## Analysis Plan
 
