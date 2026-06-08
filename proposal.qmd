@@ -31,8 +31,8 @@ but also how they use generative AI
 *1. In which majors is the GPA most affected by heavier AI Usage?*  
 *2. How is can AI be used for the best GPA score?*
 
-The audience for this analysis are students and
-the goal is to help them understand in which way AI usage is beneficial to the grade.  
+The audience for this analysis are students which want to understand how much AI is good
+and normal to use in their field for a better grade. 
 The overall message is more important then the details for this scenario,
 so simple visualizations like graphs without clutter should work best.
 
