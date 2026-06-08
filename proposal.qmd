@@ -1,9 +1,7 @@
 ---
 title: "Project Proposal"
 author:
-  - "Group Member 1"
-  - "Group Member 2"
-  - "Group Member 3"
+  - "VoidNoVerges"
 date: today
 ---
 
