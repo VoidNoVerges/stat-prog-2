@@ -59,6 +59,7 @@ using a paid subscription or not.
 ```{r}
 ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours)) + geom_boxplot()
 ```
+
 Students in the business sector seem to use AI the most while people who use it the
 last are in the field of humanities.  
 But this
