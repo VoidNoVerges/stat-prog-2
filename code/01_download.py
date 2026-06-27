@@ -22,5 +22,5 @@ python code/01_download.py
 
 import kagglehub  # type: ignore
 
-# Download latest version
+# Downloads latest version
 kagglehub.dataset_download("laveshjadon/ai-impact-on-students", output_dir="data/raw")
