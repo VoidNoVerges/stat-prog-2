@@ -23,6 +23,4 @@ python code/01_download.py
 import kagglehub  # type: ignore
 
 # Download latest version
-path = kagglehub.dataset_download(
-    "laveshjadon/ai-impact-on-students", output_dir="data/raw"
-)
+kagglehub.dataset_download("laveshjadon/ai-impact-on-students", output_dir="data/raw")
