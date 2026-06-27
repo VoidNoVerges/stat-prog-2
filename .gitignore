@@ -13,5 +13,3 @@ _site/
 Thumbs.db
 
 **/*.quarto_ipynb
-
-docs
