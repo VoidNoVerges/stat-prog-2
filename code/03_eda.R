@@ -26,3 +26,11 @@ ai_usage_gpa_change <- ggplot(data, aes(x = Percentage_Of_AI_Usage, y = GPA_Chan
 
 ggsave(here("docs", "eda_files", "ai_usage_gpa_change.png"), ai_usage_gpa_change)
 
+
+ai_usage_gpa_change_by_majors <- ai_usage_gpa_change +
+  # scales = "free_x" for enforcing visibility of x-scale
+  facet_wrap(~Major_Category, ncol = 3, nrow = 2, scales = "free_x") +
+  theme(panel.spacing = unit(1, "cm")) +
+  labs(title = "GPA change caused by gernative AI usage faceted by majors")
+
+ggsave(here("docs", "eda_files", "ai_usage_gpa_change_by_majors.png"), ai_usage_gpa_change_by_majors)
