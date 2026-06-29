@@ -52,6 +52,9 @@ just describe Percentage_Of_AI_Usage and Weekly_Study_Hours.
 "
 
 
+round_3 <- function(x) {
+  round(x, digits = 3)
+}
 
 cleaned <- raw |>
   # Ensure no duplicate student IDs.
