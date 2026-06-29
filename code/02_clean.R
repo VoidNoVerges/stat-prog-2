@@ -52,21 +52,37 @@ just describe Percentage_Of_AI_Usage and Weekly_Study_Hours.
 "
 
 
+"
+The summary method has shown:
+  - The column data types get all recognize and make sense.
+  - The min/max values from summary all make sense.
+  - There are no NA values.
+"
+
 round_3 <- function(x) {
   round(x, digits = 3)
 }
 
 cleaned <- raw |>
   # Ensure no duplicate student IDs.
-  dplyr::distinct() |>
+  distinct() |>
   # Remove unwanted whitespaces.
-  dplyr::mutate(across(where(is.character), stringr::str_squish))
-
-# The rest of the data is guaranteed to be clean as shown
-# via the summary method in the proposal:
-#   - The column data types get all recognize and make sense.
-#   - The min/max values from summary all make sense.
-#   - There are no NA values.
+  mutate(across(where(is.character), stringr::str_squish)) |>
+  # Add/remove columns mentioned above.
+  mutate(
+    GPA_Change_Over_Semester =
+      (Pre_Semester_GPA - Post_Semester_GPA) |> round_3()
+  ) |>
+  mutate(
+    Percentage_Of_AI_Usage =
+      (Weekly_GenAI_Hours /
+        (Traditional_Study_Hours + Weekly_GenAI_Hours)) |> round_3()
+  ) |>
+  mutate(
+    Weekly_Study_Hours = (Traditional_Study_Hours +
+      Weekly_GenAI_Hours) |> round_3()
+  ) |>
+  select(-c(Traditional_Study_Hours, Weekly_GenAI_Hours))
 
 write_csv(cleaned, here("data", "processed", "data_clean.csv"))
 message("Wrote data/processed/data_clean.csv")
