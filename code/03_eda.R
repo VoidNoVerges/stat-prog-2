@@ -14,7 +14,7 @@ print(summary(data))
 ai_usage_gpa_change <- ggplot(data, aes(x = Percentage_Of_AI_Usage, y = GPA_Change_Over_Semester)) +
   geom_point(aes(color = Percentage_Of_AI_Usage), size = 1, show.legend = FALSE) +
   scale_color_gradient(low = "gray80", high = "midnightblue") +
-  geom_smooth(method = "lm", se = FALSE, color = "firebrick", size = 1.2) +
+  geom_smooth(se = FALSE, color = "firebrick", size = 1.2) +
   xlim(0.0, 1.0) +
   ylim(-1.1, 1.1) +
   labs(
