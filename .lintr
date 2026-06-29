@@ -1,0 +1,7 @@
+encoding: "UTF-8"
+linters: linters_with_defaults(
+  line_length_linter(120),
+  indentation_linter = NULL,
+  object_name_linter = object_name_linter(styles = c("snake_case", "camelCase", "UPPERCASE")),
+  commented_code_linter = NULL
+  )
