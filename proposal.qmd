@@ -1,7 +1,7 @@
 ---
 title: "Project Proposal"
 author:
-  - "VoidNoVerges"
+  - "Paul Gustav Hoffmann"
 date: today
 ---
 
