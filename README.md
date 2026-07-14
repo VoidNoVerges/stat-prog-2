@@ -29,11 +29,9 @@ but also how they use generative AI
 
 ## Group Members
 
-| Name | GitHub username |
-|------|----------------|
-|      |                |
-|      |                |
-|      |                |
+| Name                     | GitHub username |
+|--------------------------|-----------------|
+| Paul Gustav Hoffmann     | VoidNoVerges    |
 
 ## Repository Structure
 
