@@ -7,6 +7,8 @@ with generative AI to the student's grades.
 My overarching goal however is to get a better insight on statistical programming
 and its workflows.
 
+Find out more about the project guidelines: [LMU StatProg2 - Group Project Guidelines](https://soda-lmu.github.io/StatProg2-2026-SoSe/group-project-guidelines.html)
+
 ## Research Questions
 
 1. In which majors is the GPA most affected by heavier AI Usage?
