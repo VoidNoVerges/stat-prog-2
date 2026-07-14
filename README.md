@@ -21,13 +21,10 @@ Find out more about the project guidelines: [LMU StatProg2 - Group Project Guide
 - **Licence:**
 [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)
 - **Description:**
-The dataset "Impact of Ai on Students" is about the generative AI usage of students and its effects on them. 
-There are 50000 rows representing 50000 observed students.
-Also 16 observed features are listed in its 16 columns.
-They capture various key information of the students
-(e.g. their major, study year & GPA score),
-but also how they use generative AI
-(e.g. which tools they use, which usecase they have & their prompting skills).
+The synthetic dataset "Impact of Ai on Students" is about the generative AI usage of students and its effects on them.
+It features 50000 simulated students with 16 features.
+They capture various key information of the students (e.g. their major, study year & GPA score),
+but also how they use generative AI (e.g. which tools they use, which usecase they have & their prompting skills).
 
 ## Group Members
 
