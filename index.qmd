@@ -1,9 +1,7 @@
 ---
-title: "Project Title"
+title: "StatProg2 - A statistical programming exercise on student AI behaviour"
 author:
-  - "Group Member 1"
-  - "Group Member 2"
-  - "Group Member 3"
+  - "Paul Gustav Hoffmann"
 date: today
 ---
 
