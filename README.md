@@ -52,12 +52,15 @@ report.qmd       final analysis report
 # 1. Install dependencies
 renv::restore()   # if using renv, otherwise install packages manually
 
-# 2. Run the pipeline in order
-source("code/01_download.R")
+# 2. Donwload the dataset
+# There are multiple different ways (look up the source of the dataset).
+# However I recommend following the instructions in code/01_download.py
+
+# 3. Run the pipeline in order
 source("code/02_clean.R")
 source("code/03_eda.R")
 source("code/04_analysis.R")
 
-# 3. Render the website
+# 4. Render the website
 quarto::quarto_render()
 ```
