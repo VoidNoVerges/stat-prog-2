@@ -9,8 +9,8 @@ and its workflows.
 
 ## Research Questions
 
-1. <!-- Your first research question -->
-2. <!-- Your second research question -->
+1. In which majors is the GPA most affected by heavier AI Usage?
+2. How can AI be used for the best GPA score?
 
 ## Dataset
 
