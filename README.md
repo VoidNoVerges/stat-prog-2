@@ -1,6 +1,11 @@
-# Project Title
+# StatProg2 - A statistical programming exercise on student AI behaviour
 
-> Replace this with a short description of your project and dataset.
+This project revolves around understanding how students use AI and should use it for
+a better grade.
+The dataset captures many different relations of traditional learning and learning
+with generative AI to the student's grades.
+My overarching goal however is to get a better insight on statistical programming
+and its workflows.
 
 ## Research Questions
 
