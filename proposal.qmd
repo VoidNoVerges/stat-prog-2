@@ -43,13 +43,14 @@ so simple visualizations like graphs without clutter should work best.
 ## Initial EDA
 
 ```{r}
-#| label: load-data
+#| output: false
 library(tidyverse)
 library(here)
 
 data <- read_csv(here("data", "raw", "ai_student_impact_dataset (1).csv"))
+```
 
-# data overview
+```{r}
 glimpse(data)
 
 summary(data)
