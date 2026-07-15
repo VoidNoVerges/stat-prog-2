@@ -7,7 +7,16 @@ date: today
 
 ## Introduction
 
-<!-- Motivate the dataset and research questions. -->
+Our world has changed a lot since the rise of generative AI
+including our everyday life, economy and how we learn things.
+Questions arise how students are affected by these changes
+and how they can benefit most from generative AI for their academic success.  
+
+To give insights into this matter we will try to anwser following questions
+given the synthetic dataset "Impact of Ai on Students" by laveshjadon:
+
+*1. In which majors is the GPA most affected by heavier AI Usage?*  
+*2. How can AI be used for the best GPA score?*
 
 ## Data
 
