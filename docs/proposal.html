@@ -203,19 +203,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The synthetic dataset is called <a href="https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv">“Impact of Ai on Students”</a> and is created by laveshjadon.<br>
 It is licenced under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</a>.</p>
 <p><em>Content:</em><br>
-The synthetic dataset “Impact of Ai on Students” is about the generative AI usage of students and its effects on them. There are 50000 rows representing 50000 simulated students. Also 16 simulated features are listed in its 16 columns. They capture various key information of the students (e.g.&nbsp;their major, study year &amp; GPA score), but also how they use generative AI (e.g.&nbsp;which tools they use, which usecase they have &amp; their prompting skills).</p>
+The synthetic dataset “Impact of Ai on Students” is about the generative AI usage of students and its effects on them. There are 50000 rows representing 50000 simulated students. Also, 16 simulated features are listed in their 16 columns. They capture various key information of the students (e.g., their major, study year &amp; GPA score), but also how they use generative AI (e.g., which tools they use, which use case they have &amp; their prompting skills).</p>
 <p><em>Where does the data come from?</em><br>
 The data is synthetically generated as stated in the provenance tab of the source.<br>
-However I reason that the data is sensibly created and is suitable for further research for the following reasons:<br>
-- good documentation (namely the creation process)<br>
-- vastly exposed to public in form of downloads, discussions or notebooks<br>
-- the creator has a comprehensive track record on kaggle</p>
+However, I reason that the data is sensibly created and is suitable for further research for the following reasons:<br>
+- Good documentation (namely the creation process)<br>
+- Vastly exposed to the public in the form of downloads, discussions, or notebooks<br>
+- The creator has a comprehensive track record on Kaggle</p>
 </section>
 <section id="research-questions" class="level2">
 <h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
 <p><em>1. In which majors is the GPA most affected by heavier AI Usage?</em><br>
 <em>2. How can AI be used for the best GPA score?</em></p>
-<p>The audience for this analysis are students which want to understand how much AI is good and normal to use in their field for a better grade. The overall message is more important then the details for this scenario, so simple visualizations like graphs without clutter should work best.</p>
+<p>The audience for this analysis is students who want to understand how good AI is and normal to use in their field for a better grade. The overall message is more important than the details for this scenario. So simple visualizations like graphs without clutter should work best.</p>
 </section>
 <section id="initial-eda" class="level2">
 <h2 class="anchored" data-anchor-id="initial-eda">Initial EDA</h2>
@@ -296,7 +296,7 @@ $ Burnout_Risk_Level         &lt;chr&gt; "High", "Low", "Medium", "Medium", "Med
 </div>
 </div>
 <p><em>Issues with the dataset?</em><br>
-The dataset is pretty clean as it has no missing values or weird formatting. Overall there are <em>no</em> issues with the values in the dataset.</p>
+The dataset is pretty clean as it has no missing values or weird formatting. Overall, there are <em>no</em> issues with the values in the dataset.</p>
 <p>Now that we know more about the dataset, let’s do some EDA:</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -311,7 +311,7 @@ The dataset is pretty clean as it has no missing values or weird formatting. Ove
 </div>
 </div>
 </div>
-<p>Interestingly the tool diversity doesn’t seem to be affected by the student using a paid subscription or not.</p>
+<p>Interestingly, the tool diversity doesn’t seem to be affected by the student using a paid subscription or not.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -325,16 +325,38 @@ The dataset is pretty clean as it has no missing values or weird formatting. Ove
 </div>
 </div>
 </div>
-<p>Students in the business sector seem to use AI the most while people who use it the last are in the field of humanities.<br>
-But this</p>
+<p>Students in the business sector seem to use AI the most for studying, while people who use it the least are in the field of humanities.</p>
+<p>But this doesn’t consider the traditional learning hours at all. So we might have a bias if there are differences in the total learning hours between the majors.<br>
+E.g., students of one major might use generative AI for fewer hours than others, while also learning way less in general. This would result in them using generative AI more than other majors when they learn, while the opposite is shown in the plot.</p>
+<p>We can resolve this by looking at the percentage of AI used for learning instead:<br>
+y = Weekly_GenAI_Hours / (Weekly_GenAI_Hours + Traditional_Study_Hours)</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Major_Category, <span class="at">y =</span> Weekly_GenAI_Hours <span class="sc">/</span> (Weekly_GenAI_Hours <span class="sc">+</span> Traditional_Study_Hours))) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Major Category"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Heaviness of AI-Usage for learning"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="proposal_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Luckily we can see that nothing truely changes, when also considering the traditional study hours.</p>
 </section>
 <section id="analysis-plan" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h2>
 <!-- Outline the methods you plan to use to answer your research questions. -->
-<p>The most important variable I am going to use is the GPA as the goal is to measure the student performance affected by AI.<br>
-For question 1 I also need the weekly generative AI study hours and the traditional study hours to measure how heavy the student’s AI usage is in procents. Other variables like tool diversity might also be interesting for this even though less important.<br>
-For question 2 the variables paid subscriptions and tool diversity are important, but also the primary use case.<br>
-The uncertainties are less of a incomplete or flawed dataset, but which variables are fair to be weighed against another to give the best persepctive for the questions.</p>
+<p>The most important variable I am going to use is the GPA, as the goal is to measure the student performance affected by AI.<br>
+For question 1, I also need the weekly generative AI study hours and the traditional study hours to measure how heavy the student’s AI usage is in percentages. Other variables like tool diversity might also be interesting for this, even though less important.<br>
+For question 2, the variables paid subscriptions and tool diversity are important, but also the primary use case.<br>
+The uncertainties are less of an incomplete or flawed dataset, but rather which variables are fair to be weighed against another to give the best perspective for the questions.</p>
 
 
 </section>
