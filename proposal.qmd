@@ -81,6 +81,19 @@ E.g., students of one major might use generative AI for fewer hours than others,
 while also learning way less in general. This would result in them using generative AI 
 more than other majors when they learn, while the opposite is shown in the plot.  
 
+We can resolve this by looking at the percentage of AI used for learning instead:  
+y = Weekly_GenAI_Hours / (Weekly_GenAI_Hours + Traditional_Study_Hours)
+```{r}
+ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours / (Weekly_GenAI_Hours + Traditional_Study_Hours))) +
+  geom_boxplot() +
+  labs(
+    x = "Major Category",
+    y = "Heaviness of AI-Usage for learning"
+  )
+```
+
+Luckily we can see that nothing truely changes, when also considering the traditional study hours.
+
 ## Analysis Plan
 
 <!-- Outline the methods you plan to use to answer your research questions. -->
