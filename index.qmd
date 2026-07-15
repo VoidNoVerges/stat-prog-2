@@ -27,7 +27,13 @@ but also how they use generative AI (e.g. which tools they use, which usecase th
 
 ## Results
 
-<!-- Summary of key findings. -->
+First, we observed that heavy AI usage seems to have a beneficial effect on the grade
+when using it for more than half of the learn time and this is independent of the majors.  
+Using it much and correctly gives some outliers even a huge boost to their grade
+which fortifies the need of the second question.  
+
+Secondly, we have created a model which is able to tell a student how AI can be used best
+for them.
 
 ## Discussion
 
