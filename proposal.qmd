@@ -74,7 +74,8 @@ ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours)) + geom_boxplot()
 
 Students in the business sector seem to use AI the most, while people who use it the
 least are in the field of humanities.  
-But this
+But this doesn't consider the traditional learning hours at all. 
+So we might have a bias if students of one major learn less in general than in another major.
 
 ## Analysis Plan
 
