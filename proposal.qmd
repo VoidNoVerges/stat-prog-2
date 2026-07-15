@@ -8,11 +8,10 @@ date: today
 ## Dataset
 
 <!-- Describe the dataset: source, licence, dimensions, key variables. -->
-The source of the data is:  
-https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv  
-
-The data is licenced under CC0 1.0 Universal:  
-(https://creativecommons.org/publicdomain/zero/1.0/)
+The synthetic dataset is called 
+["Impact of Ai on Students"](https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv)
+and is created by laveshjadon.  
+It is licenced under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
 
 *Content:*  
 The synthetic dataset "Impact of Ai on Students" is about the generative AI usage of students and its effects on them. 
