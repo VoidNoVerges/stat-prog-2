@@ -6,12 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Group Member 1">
-<meta name="author" content="Group Member 2">
-<meta name="author" content="Group Member 3">
-<meta name="dcterms.date" content="2026-07-14">
+<meta name="author" content="Paul Gustav Hoffmann">
+<meta name="dcterms.date" content="2026-07-15">
 
-<title>Project Title – StatProg2 Group Project</title>
+<title>StatProg2 - A statistical programming exercise on student AI behaviour – StatProg2 Group Project</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -135,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project Title</h1>
+<h1 class="title">StatProg2 - A statistical programming exercise on student AI behaviour</h1>
 </div>
 
 
@@ -143,18 +141,16 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Group Member 1 </p>
-             <p>Group Member 2 </p>
-             <p>Group Member 3 </p>
+             <p>Paul Gustav Hoffmann </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 14, 2026</p>
+      <p class="date">July 15, 2026</p>
     </div>
   </div>
   
@@ -168,19 +164,27 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<!-- Motivate the dataset and research questions. -->
+<p>Our world has changed a lot since the rise of generative AI including our everyday life, economy and how we learn things. Questions arise how students are affected by these changes and how they can benefit most from generative AI for their academic success.</p>
+<p>To give insights into this matter we will try to anwser following questions given the synthetic dataset “Impact of Ai on Students” by laveshjadon:</p>
+<p><em>1. In which majors is the GPA most affected by heavier AI Usage?</em><br>
+<em>2. How can AI be used for the best GPA score?</em></p>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<!-- Brief description of the dataset. -->
+<p>The synthetic dataset “Impact of Ai on Students” by laveshjadon is about the generative AI usage of students and its effects on them. It features 50000 simulated students with 16 features. They capture various key information of the students (e.g.&nbsp;their major, study year &amp; GPA score), but also how they use generative AI (e.g.&nbsp;which tools they use, which usecase they have &amp; their prompting skills).</p>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
-<!-- Summary of key findings. -->
+<p>First, we observed that heavy AI usage seems to have a beneficial effect on the grade when using it for more than half of the learn time and this is independent of the majors.<br>
+Using it much and correctly gives some outliers even a huge boost to their grade which fortifies the need of the second question.</p>
+<p>Secondly, we have created a model which is able to tell a student how AI can be used best for them.</p>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<!-- Interpret results, limitations, and next steps. -->
+<p>Given the dataset is synthetic, the observations and conclusions from this research might be statistically correct, but the dataset (even though realistic) is prone to have biases which might make these findings in fact incorrect. Caution is a must.</p>
+<p>Keep in mind that the first observation comes from the GPA change over one semester, so heavy AI usage might as well only be a short time gain or might even worsen the GPA in the long term. This data alone cannot anwser that.<br>
+But what one could certainly draw from this is that AI can help in a buisy semester.</p>
+<p>The model is bound to have some biases, given synthetic data cannot be a perfect representation of the real word, but I believe it can still give a good suggestion, when questioning the results and building on them.</p>
 
 
 </section>

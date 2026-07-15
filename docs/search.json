@@ -46,34 +46,48 @@
     "href": "proposal.html",
     "title": "Project Proposal",
     "section": "",
-    "text": "The source of the data is:\nhttps://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv\nThe data is licenced under CC0 1.0 Universal:\n(https://creativecommons.org/publicdomain/zero/1.0/)\nContent:\nThe dataset “Impact of Ai on Students” is about the generative AI usage of students and its effects on them. There are 50000 rows representing 50000 observed students. Also 16 observed features are listed in its 16 columns. They capture various key information of the students (e.g. their major, study year & GPA score), but also how they use generative AI (e.g. which tools they use, which usecase they have & their prompting skills).\nWhere does the data come from?\nThe data is synthetically generated as stated in the provenance tab of the source.\nHowever I reason that the data is sensibly created and is suitable for further research for the following reasons:\n- good documentation (namely the creation process)\n- vastly exposed to public in form of downloads, discussions or notebooks\n- the creator has a comprehensive track record on kaggle"
+    "text": "The source of the data is:\nhttps://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv\nThe data is licenced under CC0 1.0 Universal:\n(https://creativecommons.org/publicdomain/zero/1.0/)\nContent:\nThe synthetic dataset “Impact of Ai on Students” is about the generative AI usage of students and its effects on them. There are 50000 rows representing 50000 simulated students. Also 16 simulated features are listed in its 16 columns. They capture various key information of the students (e.g. their major, study year & GPA score), but also how they use generative AI (e.g. which tools they use, which usecase they have & their prompting skills).\nWhere does the data come from?\nThe data is synthetically generated as stated in the provenance tab of the source.\nHowever I reason that the data is sensibly created and is suitable for further research for the following reasons:\n- good documentation (namely the creation process)\n- vastly exposed to public in form of downloads, discussions or notebooks\n- the creator has a comprehensive track record on kaggle"
   },
   {
     "objectID": "proposal.html#dataset",
     "href": "proposal.html#dataset",
     "title": "Project Proposal",
     "section": "",
-    "text": "The source of the data is:\nhttps://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv\nThe data is licenced under CC0 1.0 Universal:\n(https://creativecommons.org/publicdomain/zero/1.0/)\nContent:\nThe dataset “Impact of Ai on Students” is about the generative AI usage of students and its effects on them. There are 50000 rows representing 50000 observed students. Also 16 observed features are listed in its 16 columns. They capture various key information of the students (e.g. their major, study year & GPA score), but also how they use generative AI (e.g. which tools they use, which usecase they have & their prompting skills).\nWhere does the data come from?\nThe data is synthetically generated as stated in the provenance tab of the source.\nHowever I reason that the data is sensibly created and is suitable for further research for the following reasons:\n- good documentation (namely the creation process)\n- vastly exposed to public in form of downloads, discussions or notebooks\n- the creator has a comprehensive track record on kaggle"
+    "text": "The source of the data is:\nhttps://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv\nThe data is licenced under CC0 1.0 Universal:\n(https://creativecommons.org/publicdomain/zero/1.0/)\nContent:\nThe synthetic dataset “Impact of Ai on Students” is about the generative AI usage of students and its effects on them. There are 50000 rows representing 50000 simulated students. Also 16 simulated features are listed in its 16 columns. They capture various key information of the students (e.g. their major, study year & GPA score), but also how they use generative AI (e.g. which tools they use, which usecase they have & their prompting skills).\nWhere does the data come from?\nThe data is synthetically generated as stated in the provenance tab of the source.\nHowever I reason that the data is sensibly created and is suitable for further research for the following reasons:\n- good documentation (namely the creation process)\n- vastly exposed to public in form of downloads, discussions or notebooks\n- the creator has a comprehensive track record on kaggle"
   },
   {
     "objectID": "index.html#data",
     "href": "index.html#data",
-    "title": "Project Title",
+    "title": "StatProg2 - A statistical programming exercise on student AI behaviour",
     "section": "Data",
-    "text": "Data"
+    "text": "Data\nThe synthetic dataset “Impact of Ai on Students” by laveshjadon is about the generative AI usage of students and its effects on them. It features 50000 simulated students with 16 features. They capture various key information of the students (e.g. their major, study year & GPA score), but also how they use generative AI (e.g. which tools they use, which usecase they have & their prompting skills)."
   },
   {
     "objectID": "index.html#results",
     "href": "index.html#results",
-    "title": "Project Title",
+    "title": "StatProg2 - A statistical programming exercise on student AI behaviour",
     "section": "Results",
-    "text": "Results"
+    "text": "Results\nFirst, we observed that heavy AI usage seems to have a beneficial effect on the grade when using it for more than half of the learn time and this is independent of the majors.\nUsing it much and correctly gives some outliers even a huge boost to their grade which fortifies the need of the second question.\nSecondly, we have created a model which is able to tell a student how AI can be used best for them."
   },
   {
     "objectID": "index.html#discussion",
     "href": "index.html#discussion",
-    "title": "Project Title",
+    "title": "StatProg2 - A statistical programming exercise on student AI behaviour",
     "section": "Discussion",
-    "text": "Discussion"
+    "text": "Discussion\nGiven the dataset is synthetic, the observations and conclusions from this research might be statistically correct, but the dataset (even though realistic) is prone to have biases which might make these findings in fact incorrect. Caution is a must.\nKeep in mind that the first observation comes from the GPA change over one semester, so heavy AI usage might as well only be a short time gain or might even worsen the GPA in the long term. This data alone cannot anwser that.\nBut what one could certainly draw from this is that AI can help in a buisy semester.\nThe model is bound to have some biases, given synthetic data cannot be a perfect representation of the real word, but I believe it can still give a good suggestion, when questioning the results and building on them."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "StatProg2 - A statistical programming exercise on student AI behaviour",
+    "section": "",
+    "text": "Our world has changed a lot since the rise of generative AI including our everyday life, economy and how we learn things. Questions arise how students are affected by these changes and how they can benefit most from generative AI for their academic success.\nTo give insights into this matter we will try to anwser following questions given the synthetic dataset “Impact of Ai on Students” by laveshjadon:\n1. In which majors is the GPA most affected by heavier AI Usage?\n2. How can AI be used for the best GPA score?"
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "StatProg2 - A statistical programming exercise on student AI behaviour",
+    "section": "",
+    "text": "Our world has changed a lot since the rise of generative AI including our everyday life, economy and how we learn things. Questions arise how students are affected by these changes and how they can benefit most from generative AI for their academic success.\nTo give insights into this matter we will try to anwser following questions given the synthetic dataset “Impact of Ai on Students” by laveshjadon:\n1. In which majors is the GPA most affected by heavier AI Usage?\n2. How can AI be used for the best GPA score?"
   }
 ]
