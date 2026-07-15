@@ -59,6 +59,9 @@ summary(data)
 *Issues with the dataset?*  
 The dataset is pretty clean as it has no missing values or weird formatting.
 Overall there are _no_ issues with the values in the dataset.  
+
+Now that we know more about the dataset, let's do some EDA:
+
 ```{r}
 ggplot(data, aes(x = Paid_Subscription, y = Tool_Diversity)) + geom_boxplot()
 ```
