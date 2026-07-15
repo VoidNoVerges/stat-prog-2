@@ -16,29 +16,29 @@ It is licenced under [CC0 1.0 Universal](https://creativecommons.org/publicdomai
 *Content:*  
 The synthetic dataset "Impact of Ai on Students" is about the generative AI usage of students and its effects on them. 
 There are 50000 rows representing 50000 simulated students.
-Also 16 simulated features are listed in its 16 columns.
+Also, 16 simulated features are listed in their 16 columns.
 They capture various key information of the students
-(e.g. their major, study year & GPA score),
+(e.g., their major, study year & GPA score),
 but also how they use generative AI
-(e.g. which tools they use, which usecase they have & their prompting skills).
+(e.g., which tools they use, which use case they have & their prompting skills).
 
 *Where does the data come from?*  
 The data is synthetically generated as stated in the provenance tab of the source.  
-However I reason that the data is sensibly created and is suitable for further research
+However, I reason that the data is sensibly created and is suitable for further research
 for the following reasons:  
-- good documentation (namely the creation process)  
-- vastly exposed to public in form of downloads, discussions or notebooks  
-- the creator has a comprehensive track record on kaggle  
+- Good documentation (namely the creation process)  
+- Vastly exposed to the public in the form of downloads, discussions, or notebooks  
+- The creator has a comprehensive track record on Kaggle  
 
 ## Research Questions
 
 *1. In which majors is the GPA most affected by heavier AI Usage?*  
 *2. How can AI be used for the best GPA score?*
 
-The audience for this analysis are students which want to understand how much AI is good
+The audience for this analysis is students who want to understand how good AI is
 and normal to use in their field for a better grade. 
-The overall message is more important then the details for this scenario,
-so simple visualizations like graphs without clutter should work best.
+The overall message is more important than the details for this scenario. 
+So simple visualizations like graphs without clutter should work best.
 
 ## Initial EDA
 
@@ -58,7 +58,7 @@ summary(data)
 
 *Issues with the dataset?*  
 The dataset is pretty clean as it has no missing values or weird formatting.
-Overall there are _no_ issues with the values in the dataset.  
+Overall, there are _no_ issues with the values in the dataset.  
 
 Now that we know more about the dataset, let's do some EDA:
 
@@ -66,27 +66,27 @@ Now that we know more about the dataset, let's do some EDA:
 ggplot(data, aes(x = Paid_Subscription, y = Tool_Diversity)) + geom_boxplot()
 ```
 
-Interestingly the tool diversity doesn't seem to be affected by the student
+Interestingly, the tool diversity doesn't seem to be affected by the student
 using a paid subscription or not.
 ```{r}
 ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours)) + geom_boxplot()
 ```
 
-Students in the business sector seem to use AI the most while people who use it the
-last are in the field of humanities.  
+Students in the business sector seem to use AI the most, while people who use it the
+least are in the field of humanities.  
 But this
 
 ## Analysis Plan
 
 <!-- Outline the methods you plan to use to answer your research questions. -->
-The most important variable I am going to use is the GPA as the goal is to measure
+The most important variable I am going to use is the GPA, as the goal is to measure
 the student performance affected by AI.  
-For question 1 I also need the weekly generative AI study hours and the
-traditional study hours to measure how heavy the student's AI usage is in procents.
+For question 1, I also need the weekly generative AI study hours and the
+traditional study hours to measure how heavy the student's AI usage is in percentages.
 Other variables like tool diversity might also be interesting for
-this even though less important.  
-For question 2 the variables paid subscriptions and tool diversity are important,
+this, even though less important.  
+For question 2, the variables paid subscriptions and tool diversity are important,
 but also the primary use case.  
-The uncertainties are less of a incomplete or flawed dataset, but which variables are
-fair to be weighed against another to give the best persepctive for the questions.
+The uncertainties are less of an incomplete or flawed dataset, but rather which variables are
+fair to be weighed against another to give the best perspective for the questions.
 
