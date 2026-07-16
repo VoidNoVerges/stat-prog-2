@@ -97,12 +97,12 @@ Luckily we can see that nothing truely changes, when also considering the tradit
 ## Analysis Plan
 
 The most important variables I am going to use are the pre and post semester GPA, as for both questions we need to measure
-the student performance affected by AI.  
+the students' performance affected by AI.  
 
 For question 1, we also need the weekly generative AI study hours and the
 traditional study hours to measure how heavy the students' AI usage is in percentages.
-To compare the majors in the first place, we need the equally called column. 
+To compare the majors in the first place, we need the accordingly called column. 
 As we have 3 dimensions now, faceting between the majors is the way to avoid clutter.
 
-For question 2, the idea is to create a model which can predict how they should use AI to improve the GPA score, 
-given some information about the student. This will surely use most variables in the dataset.
+For question 2, the idea is to create a model which can predict how students should use AI to improve the GPA score, 
+given some information about the student. This will surely use most columns of the dataset.
