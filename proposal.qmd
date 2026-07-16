@@ -96,15 +96,13 @@ Luckily we can see that nothing truely changes, when also considering the tradit
 
 ## Analysis Plan
 
-<!-- Outline the methods you plan to use to answer your research questions. -->
-The most important variable I am going to use is the GPA, as the goal is to measure
-the student performance affected by AI.  
-For question 1, I also need the weekly generative AI study hours and the
-traditional study hours to measure how heavy the student's AI usage is in percentages.
-Other variables like tool diversity might also be interesting for
-this, even though less important.  
-For question 2, the variables paid subscriptions and tool diversity are important,
-but also the primary use case.  
-The uncertainties are less of an incomplete or flawed dataset, but rather which variables are
-fair to be weighed against another to give the best perspective for the questions.
+The most important variables I am going to use are the pre and post semester GPA, as for both questions we need to measure
+the students' performance affected by AI.  
 
+For question 1, we also need the weekly generative AI study hours and the
+traditional study hours to measure how heavy the students' AI usage is in percentages.
+To compare the majors in the first place, we need the accordingly called column. 
+As we have 3 dimensions now, faceting between the majors is the way to avoid clutter.
+
+For question 2, the idea is to create a model which can predict how students should use AI to improve the GPA score, 
+given some information about the student. This will surely use most columns of the dataset.
