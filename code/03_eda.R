@@ -35,11 +35,11 @@ ai_usage_gpa_change_by_majors <- ai_usage_gpa_change +
 
 ggsave(here("docs", "eda_files", "ai_usage_gpa_change_by_majors.png"), ai_usage_gpa_change_by_majors)
 
-"""
+"
 These plots indicate following trend for all majors:
 If the generative AI hours are less than half of the total study hours it doesn't
 seem to have effect on the GPA change. However around the 50% mark there is a small linear
 increase of the GPA change in favor of the generative AI hours.
 These plots also show as a side effect that there are some people with heavy AI usage
 who get an extraordinary better GPA change than the rest.
-"""
+"

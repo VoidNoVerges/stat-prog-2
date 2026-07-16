@@ -48,4 +48,7 @@ But what one could certainly draw from this is that AI can help in a buisy semes
 
 The model is bound to have some biases, given synthetic data cannot be a perfect
 representation of the real word, but I believe it can still give a good suggestion,
-when questioning the results and building on them.
+when questioning the results and building on them. 
+However, one major flaw is that the data doesn't include long-term effects (only GPA 
+change over one semester). The model cannot represent them accordingly which might be a 
+dangerous restriction.
