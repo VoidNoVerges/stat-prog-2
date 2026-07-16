@@ -7,7 +7,6 @@ date: today
 
 ## Dataset
 
-<!-- Describe the dataset: source, licence, dimensions, key variables. -->
 The synthetic dataset is called 
 ["Impact of Ai on Students"](https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv)
 and is created by laveshjadon.  
