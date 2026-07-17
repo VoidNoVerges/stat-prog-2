@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Paul Gustav Hoffmann">
-<meta name="dcterms.date" content="2026-07-17">
 
-<title>Project Proposal – StatProg2 Group Project</title>
+<title>Group Reflection – StatProg2 Group Project</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -133,7 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./proposal.html" aria-current="page"> 
+    <a class="nav-link" href="./proposal.html"> 
 <span class="menu-text">Proposal</span></a>
   </li>  
   <li class="nav-item">
@@ -141,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Report</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./group-reflection.html"> 
+    <a class="nav-link active" href="./group-reflection.html" aria-current="page"> 
 <span class="menu-text">Reflection</span></a>
   </li>  
 </ul>
@@ -160,10 +123,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link active" data-scroll-target="#dataset">Dataset</a></li>
-  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
-  <li><a href="#initial-eda" id="toc-initial-eda" class="nav-link" data-scroll-target="#initial-eda">Initial EDA</a></li>
-  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a></li>
+  <li><a href="#skills-inventory" id="toc-skills-inventory" class="nav-link active" data-scroll-target="#skills-inventory">Skills inventory</a>
+  <ul class="collapse">
+  <li><a href="#functions-refactoring-w2" id="toc-functions-refactoring-w2" class="nav-link" data-scroll-target="#functions-refactoring-w2">Functions &amp; refactoring (W2)</a></li>
+  <li><a href="#debugging-w3" id="toc-debugging-w3" class="nav-link" data-scroll-target="#debugging-w3">Debugging (W3)</a></li>
+  <li><a href="#version-control-remotes-w4" id="toc-version-control-remotes-w4" class="nav-link" data-scroll-target="#version-control-remotes-w4">Version control &amp; remotes (W4)</a></li>
+  <li><a href="#quarto-websites-collaborative-coding-w5" id="toc-quarto-websites-collaborative-coding-w5" class="nav-link" data-scroll-target="#quarto-websites-collaborative-coding-w5">Quarto websites &amp; collaborative coding (W5)</a></li>
+  <li><a href="#r-packages-w6" id="toc-r-packages-w6" class="nav-link" data-scroll-target="#r-packages-w6">R packages (W6)</a></li>
+  <li><a href="#initial-data-analysis-data-cleaning-w7" id="toc-initial-data-analysis-data-cleaning-w7" class="nav-link" data-scroll-target="#initial-data-analysis-data-cleaning-w7">Initial data analysis &amp; data cleaning (W7)</a></li>
+  <li><a href="#reproducibility-open-data-renv-w9" id="toc-reproducibility-open-data-renv-w9" class="nav-link" data-scroll-target="#reproducibility-open-data-renv-w9">Reproducibility, open data &amp; renv (W9)</a></li>
+  <li><a href="#analysis-inference-strategies-w10" id="toc-analysis-inference-strategies-w10" class="nav-link" data-scroll-target="#analysis-inference-strategies-w10">Analysis &amp; inference strategies (W10)</a></li>
+  <li><a href="#communication-visualisation-w11" id="toc-communication-visualisation-w11" class="nav-link" data-scroll-target="#communication-visualisation-w11">Communication &amp; visualisation (W11)</a></li>
+  </ul></li>
+  <li><a href="#key-analytical-decisions" id="toc-key-analytical-decisions" class="nav-link" data-scroll-target="#key-analytical-decisions">Key analytical decisions</a>
+  <ul class="collapse">
+  <li><a href="#decision-1-machine-learning-vs-simple-correlation-plots" id="toc-decision-1-machine-learning-vs-simple-correlation-plots" class="nav-link" data-scroll-target="#decision-1-machine-learning-vs-simple-correlation-plots">Decision 1: Machine Learning vs Simple Correlation Plots</a></li>
+  <li><a href="#decision-2-providing-full-download-tutorial-vs-linking-source" id="toc-decision-2-providing-full-download-tutorial-vs-linking-source" class="nav-link" data-scroll-target="#decision-2-providing-full-download-tutorial-vs-linking-source">Decision 2: Providing full download tutorial vs linking source</a></li>
+  </ul></li>
+  <li><a href="#workflow-collaboration" id="toc-workflow-collaboration" class="nav-link" data-scroll-target="#workflow-collaboration">Workflow &amp; collaboration</a></li>
+  <li><a href="#what-would-we-change-about-how-we-coordinated" id="toc-what-would-we-change-about-how-we-coordinated" class="nav-link" data-scroll-target="#what-would-we-change-about-how-we-coordinated"><em>What would we change about how we coordinated?</em></a></li>
+  <li><a href="#llm-usage" id="toc-llm-usage" class="nav-link" data-scroll-target="#llm-usage">LLM usage</a>
+  <ul class="collapse">
+  <li><a href="#usage-1-explanations" id="toc-usage-1-explanations" class="nav-link" data-scroll-target="#usage-1-explanations">Usage 1: Explanations</a></li>
+  <li><a href="#usage-2-code-generation" id="toc-usage-2-code-generation" class="nav-link" data-scroll-target="#usage-2-code-generation">Usage 2: Code generation</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -172,26 +155,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project Proposal</h1>
+<h1 class="title">Group Reflection</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Paul Gustav Hoffmann </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">July 17, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -201,165 +172,150 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="dataset" class="level2">
-<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
-<p>The synthetic dataset is called <a href="https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv">“Impact of Ai on Students”</a> and is created by laveshjadon.<br>
-It is licenced under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</a>.</p>
-<p><em>Content:</em><br>
-The synthetic dataset “Impact of Ai on Students” is about the generative AI usage of students and its effects on them. There are 50000 rows representing 50000 simulated students. Also, 16 simulated features are listed in their 16 columns. They capture various key information of the students (e.g., their major, study year &amp; GPA score), but also how they use generative AI (e.g., which tools they use, which use case they have &amp; their prompting skills).</p>
-<p><em>Where does the data come from?</em><br>
-The data is synthetically generated as stated in the provenance tab of the source.<br>
-However, I reason that the data is sensibly created and is suitable for further research for the following reasons:<br>
-- Good documentation (namely the creation process)<br>
-- Vastly exposed to the public in the form of downloads, discussions, or notebooks<br>
-- The creator has a comprehensive track record on Kaggle</p>
+<section id="skills-inventory" class="level2">
+<h2 class="anchored" data-anchor-id="skills-inventory">Skills inventory</h2>
+<p>Git, Github (Issues, PRs), R, Python, Machine Learning Knowledge</p>
+<section id="functions-refactoring-w2" class="level3">
+<h3 class="anchored" data-anchor-id="functions-refactoring-w2">Functions &amp; refactoring (W2)</h3>
+<p><em>What we did:</em><br>
+A helper function and a big one featuring a regression model which gives recommendations, given some input parameters about the student.</p>
+<p><em>What worked well:</em><br>
+Everything fine.</p>
+<p><em>What was hard:</em><br>
+Nothing, but the syntax for functions in R feels awkward at times compared to other languages.</p>
 </section>
-<section id="research-questions" class="level2">
-<h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
-<p><em>1. In which majors is the GPA most affected by heavier AI Usage?</em><br>
-<em>2. How can AI be used for the best GPA score?</em></p>
-<p>The audience for this analysis is students who want to understand how good AI is and normal to use in their field for a better grade. The overall message is more important than the details for this scenario. So simple visualizations like graphs without clutter should work best.</p>
+<section id="debugging-w3" class="level3">
+<h3 class="anchored" data-anchor-id="debugging-w3">Debugging (W3)</h3>
+<p><em>What we did:</em><br>
+Following the error message instructions. If the message was unhelpful, the AI helped. If the code runed fine, but results were unexpected, I tried different parameters till I found the problem.</p>
+<p><em>What worked well:</em><br>
+Everthing worked alright most of the times.</p>
+<p><em>What was hard:</em><br>
+Errors resulting from mysterious function outputs/input requirements which are hard to debug.</p>
 </section>
-<section id="initial-eda" class="level2">
-<h2 class="anchored" data-anchor-id="initial-eda">Initial EDA</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"ai_student_impact_dataset (1).csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 50,000
-Columns: 16
-$ Student_ID                 &lt;dbl&gt; 100001, 100002, 100003, 100004, 100005, 100…
-$ Major_Category             &lt;chr&gt; "Humanities", "Medical", "Business", "Busin…
-$ Year_of_Study              &lt;chr&gt; "Senior", "Junior", "Freshman", "Senior", "…
-$ Pre_Semester_GPA           &lt;dbl&gt; 2.418, 3.821, 3.398, 3.789, 3.635, 3.449, 3…
-$ Weekly_GenAI_Hours         &lt;dbl&gt; 23.31, 1.12, 21.26, 1.82, 9.29, 6.50, 31.41…
-$ Primary_Use_Case           &lt;chr&gt; "Copywriting/Drafting", "Ideation", "Summar…
-$ Prompt_Engineering_Skill   &lt;chr&gt; "Beginner", "Advanced", "Beginner", "Interm…
-$ Tool_Diversity             &lt;dbl&gt; 1, 5, 2, 4, 4, 1, 5, 3, 2, 2, 3, 3, 2, 1, 1…
-$ Paid_Subscription          &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TR…
-$ Traditional_Study_Hours    &lt;dbl&gt; 8.13, 16.65, 10.35, 15.23, 12.55, 14.19, 13…
-$ Perceived_AI_Dependency    &lt;dbl&gt; 5, 3, 5, 2, 4, 4, 8, 2, 1, 3, 5, 3, 2, 2, 2…
-$ Institutional_Policy       &lt;chr&gt; "Allowed_With_Citation", "Allowed_With_Cita…
-$ Anxiety_Level_During_Exams &lt;dbl&gt; 6, 9, 9, 2, 4, 5, 7, 1, 5, 8, 3, 3, 4, 3, 4…
-$ Post_Semester_GPA          &lt;dbl&gt; 2.393, 3.696, 3.499, 4.000, 3.798, 3.666, 4…
-$ Skill_Retention_Score      &lt;dbl&gt; 86.44, 69.39, 73.93, 63.58, 100.00, 65.92, …
-$ Burnout_Risk_Level         &lt;chr&gt; "High", "Low", "Medium", "Medium", "Medium"…</code></pre>
-</div>
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Student_ID     Major_Category     Year_of_Study      Pre_Semester_GPA
- Min.   :100001   Length:50000       Length:50000       Min.   :1.183   
- 1st Qu.:112501   Class :character   Class :character   1st Qu.:2.834   
- Median :125001   Mode  :character   Mode  :character   Median :3.210   
- Mean   :125001                                         Mean   :3.146   
- 3rd Qu.:137500                                         3rd Qu.:3.521   
- Max.   :150000                                         Max.   :3.998   
- Weekly_GenAI_Hours Primary_Use_Case   Prompt_Engineering_Skill Tool_Diversity
- Min.   : 0.000     Length:50000       Length:50000             Min.   :1.0   
- 1st Qu.: 2.390     Class :character   Class :character         1st Qu.:2.0   
- Median : 5.800     Mode  :character   Mode  :character         Median :3.0   
- Mean   : 8.428                                                 Mean   :2.8   
- 3rd Qu.:11.720                                                 3rd Qu.:4.0   
- Max.   :40.000                                                 Max.   :5.0   
- Paid_Subscription Traditional_Study_Hours Perceived_AI_Dependency
- Mode :logical     Min.   : 1.00           Min.   : 1.000         
- FALSE:28846       1st Qu.: 7.56           1st Qu.: 2.000         
- TRUE :21154       Median :11.18           Median : 3.000         
-                   Mean   :11.21           Mean   : 3.505         
-                   3rd Qu.:14.71           3rd Qu.: 5.000         
-                   Max.   :35.86           Max.   :10.000         
- Institutional_Policy Anxiety_Level_During_Exams Post_Semester_GPA
- Length:50000         Min.   : 1.000             Min.   :1.000    
- Class :character     1st Qu.: 3.000             1st Qu.:3.024    
- Mode  :character     Median : 4.000             Median :3.421    
-                      Mean   : 4.271             Mean   :3.349    
-                      3rd Qu.: 6.000             3rd Qu.:3.749    
-                      Max.   :10.000             Max.   :4.000    
- Skill_Retention_Score Burnout_Risk_Level
- Min.   : 10.78        Length:50000      
- 1st Qu.: 66.82        Class :character  
- Median : 76.00        Mode  :character  
- Mean   : 75.80                          
- 3rd Qu.: 85.19                          
- Max.   :100.00                          </code></pre>
-</div>
-</div>
-<p><em>Issues with the dataset?</em><br>
-The dataset is pretty clean as it has no missing values or weird formatting. Overall, there are <em>no</em> issues with the values in the dataset.</p>
-<p>Now that we know more about the dataset, let’s do some EDA:</p>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Paid_Subscription, <span class="at">y =</span> Tool_Diversity)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="proposal_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Interestingly, the tool diversity doesn’t seem to be affected by the student using a paid subscription or not.</p>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Major_Category, <span class="at">y =</span> Weekly_GenAI_Hours)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="proposal_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Students in the business sector seem to use AI the most for studying, while people who use it the least are in the field of humanities.</p>
-<p>But this doesn’t consider the traditional learning hours at all. So we might have a bias if there are differences in the total learning hours between the majors.<br>
-E.g., students of one major might use generative AI for fewer hours than others, while also learning way less in general. This would result in them using generative AI more than other majors when they learn, while the opposite is shown in the plot.</p>
-<p>We can resolve this by looking at the percentage of AI used for learning instead:<br>
-y = Weekly_GenAI_Hours / (Weekly_GenAI_Hours + Traditional_Study_Hours)</p>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Major_Category, <span class="at">y =</span> Weekly_GenAI_Hours <span class="sc">/</span> (Weekly_GenAI_Hours <span class="sc">+</span> Traditional_Study_Hours))) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Major Category"</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Heaviness of AI-Usage for learning"</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="proposal_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Luckily we can see that nothing truely changes, when also considering the traditional study hours.</p>
+<section id="version-control-remotes-w4" class="level3">
+<h3 class="anchored" data-anchor-id="version-control-remotes-w4">Version control &amp; remotes (W4)</h3>
+<p><em>What we did:</em><br>
+Using git, issues for every problem with their own branches and prs.</p>
+<p><em>What worked well:</em><br>
+Keeping everything organized.</p>
+<p><em>What was hard:</em><br>
+Accidentaly pushing pr to the wrong branches was sometimes an issue or using the wrong source branch for a new branch. Basically mistakes that are easy to overlook.</p>
 </section>
-<section id="analysis-plan" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h2>
-<p>The most important variables I am going to use are the pre and post semester GPA, as for both questions we need to measure the students’ performance affected by AI.</p>
-<p>For question 1, we also need the weekly generative AI study hours and the traditional study hours to measure how heavy the students’ AI usage is in percentages. To compare the majors in the first place, we need the accordingly called column. As we have 3 dimensions now, faceting between the majors is the way to avoid clutter.</p>
-<p>For question 2, the idea is to create a model which can predict how students should use AI to improve the GPA score, given some information about the student. This will surely use most columns of the dataset.</p>
+<section id="quarto-websites-collaborative-coding-w5" class="level3">
+<h3 class="anchored" data-anchor-id="quarto-websites-collaborative-coding-w5">Quarto websites &amp; collaborative coding (W5)</h3>
+<p><em>What we did:</em><br>
+Enabeling the website and updating it from time to time by rendering new elements to docs.</p>
+<p><em>What worked well:</em><br>
+Everything.</p>
+<p><em>What was hard:</em><br>
+Nothing.</p>
+</section>
+<section id="r-packages-w6" class="level3">
+<h3 class="anchored" data-anchor-id="r-packages-w6">R packages (W6)</h3>
+<p><em>What we did:</em><br>
+Installing some packages to a renv.</p>
+<p><em>What worked well:</em><br>
+Everything that wasn’t hard.</p>
+<p><em>What was hard:</em><br>
+Sometimes packages had issues when installing at first. But it worked fine after repetition.</p>
+</section>
+<section id="initial-data-analysis-data-cleaning-w7" class="level3">
+<h3 class="anchored" data-anchor-id="initial-data-analysis-data-cleaning-w7">Initial data analysis &amp; data cleaning (W7)</h3>
+<p><em>What we did:</em><br>
+Not much, as the dataset was already tidy. But I added some new columns which made other columns redundant which I deleted then. The initial data analysis went smoothly.</p>
+<p><em>What worked well:</em><br>
+Everthing that wasn’t hard.</p>
+<p><em>What was hard:</em><br>
+Transforming the columns at first, but got it down after trying some times.</p>
+</section>
+<section id="reproducibility-open-data-renv-w9" class="level3">
+<h3 class="anchored" data-anchor-id="reproducibility-open-data-renv-w9">Reproducibility, open data &amp; renv (W9)</h3>
+<p><em>What we did:</em><br>
+Using the template from the REAME.md. The only thing I had to change was the download of the dataset. I needed to integrate python code and added a small tutorial on how to set the python runtime up.</p>
+<p><em>What worked well:</em><br>
+Everything, as the reproducibility is already in the code.</p>
+<p><em>What was hard:</em><br>
+Trying to find a way to use here instead of the python method at first, but I settled with the second method.</p>
+</section>
+<section id="analysis-inference-strategies-w10" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-inference-strategies-w10">Analysis &amp; inference strategies (W10)</h3>
+<p><em>What we did:</em><br>
+Correlation plots, facetting for multiple plots and a regressing model for recommendations on how a student should use AI for a better GPA.</p>
+<p><em>What worked well:</em><br>
+The plots worked fine, especially the facetting.</p>
+<p><em>What was hard:</em><br>
+The model as I had no experience with implementing machine learning models before, but it worked out after some trial and errors and drowning the AI with questions.</p>
+</section>
+<section id="communication-visualisation-w11" class="level3">
+<h3 class="anchored" data-anchor-id="communication-visualisation-w11">Communication &amp; visualisation (W11)</h3>
+<p><em>What we did:</em><br>
+Using multiple plots with easy to digest labeling and comments.</p>
+<p><em>What worked well:</em><br>
+Everthing was fine.</p>
+<p><em>What was hard:</em><br>
+Sometimes I had difficulties formatting my outputs in the qmd as I have litte experience with style formatting.</p>
+</section>
+</section>
+<section id="key-analytical-decisions" class="level2">
+<h2 class="anchored" data-anchor-id="key-analytical-decisions">Key analytical decisions</h2>
+<p>Describe 2–3 decisions that had a meaningful effect on your results or workflow.</p>
+<section id="decision-1-machine-learning-vs-simple-correlation-plots" class="level3">
+<h3 class="anchored" data-anchor-id="decision-1-machine-learning-vs-simple-correlation-plots">Decision 1: Machine Learning vs Simple Correlation Plots</h3>
+<p><em>What were we deciding between?</em><br>
+Using machine learning or just the easy quick was with some correlation plots to find out what kind of AI-Usage is recommended for the best GPA-score.</p>
+<p><em>How did we reason through it?</em><br>
+What can give a better insight about the causation was one deciding factor. I settled for machine learning. Honestly I just wanted to try out machine learning and it was worth it.</p>
+<p><em>In hindsight, would we decide differently?</em><br>
+Nothing really.</p>
+</section>
+<section id="decision-2-providing-full-download-tutorial-vs-linking-source" class="level3">
+<h3 class="anchored" data-anchor-id="decision-2-providing-full-download-tutorial-vs-linking-source">Decision 2: Providing full download tutorial vs linking source</h3>
+<p><em>What were we deciding between?</em><br>
+If i should provide a full cross-language download way with a tutorial or just linking to the source where many download alternatives were listed.</p>
+<p><em>How did we reason through it?</em><br>
+The download process is an important factor for reproducibility and even got a dedicated file in the template. Just leaving it alone with a comment “look up the source: link” felt not right, so I settled with the other way.</p>
+<p><em>In hindsight, would we decide differently?</em><br>
+Nothing as it works fine and I think it was the best alternative.</p>
+</section>
+</section>
+<section id="workflow-collaboration" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-collaboration">Workflow &amp; collaboration</h2>
+<p><em>How did we divide work across group members?</em><br>
+I was the only member.</p>
+<p><em>What branching or Git workflow did we actually use — and did it match the proposal?</em><br>
+I used many different features of git/github. I think it satisfied the proposal.</p>
+</section>
+<section id="what-would-we-change-about-how-we-coordinated" class="level2">
+<h2 class="anchored" data-anchor-id="what-would-we-change-about-how-we-coordinated"><em>What would we change about how we coordinated?</em></h2>
+</section>
+<section id="llm-usage" class="level2">
+<h2 class="anchored" data-anchor-id="llm-usage">LLM usage</h2>
+<p>Describe up to 5 significant uses of an LLM tool during the project.</p>
+<section id="usage-1-explanations" class="level3">
+<h3 class="anchored" data-anchor-id="usage-1-explanations">Usage 1: Explanations</h3>
+<ul>
+<li><strong>Tool / model:</strong><br>
+Gemini</li>
+<li><strong>What it produced:</strong><br>
+Explanations on errors, on R/qmd, how to do machine learning in R.</li>
+<li><strong>What we had to correct or verify:</strong><br>
+Some explanations on machine learning were under false assumptions (e.g.&nbsp;linear data).</li>
+</ul>
+</section>
+<section id="usage-2-code-generation" class="level3">
+<h3 class="anchored" data-anchor-id="usage-2-code-generation">Usage 2: Code generation</h3>
+<ul>
+<li><strong>Tool / model:</strong><br>
+Gemini</li>
+<li><strong>What it produced:</strong><br>
+Some example code how to build my model given the idea I had in the comment in 04_analysis. Had to thinker around with it for a while and tried different approaches. Eventually I got it to work and then changed it around to my needs.</li>
+<li><strong>What we had to correct or verify:</strong><br>
+Often it didn’t get the required packages right or sometimes the types of input parameters were incorrect in a function input.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
