@@ -8,114 +8,114 @@ Git, Github (Issues, PRs), R, Python, Machine Learning Knowledge
 
 ### Functions & refactoring (W2)
 
-*What we did:*
-A helper function and a big one featuring a regression model which gives recommendations,
+*What we did:*  
+A helper function and a big one featuring a regression model which gives recommendations, 
 given some input parameters about the student.
 
-*What worked well:*
+*What worked well:*  
 Everything fine.
 
-*What was hard:*
+*What was hard:*  
 Nothing, but the syntax for functions in R feels awkward at times compared to other languages.
 
 ### Debugging (W3)
 
-*What we did:*
-Following the error message instructions. If the message was unhelpful, the AI helped.
-If the code runed fine, but results were unexpected, I tried different parameters till
+*What we did:*  
+Following the error message instructions. If the message was unhelpful, the AI helped. 
+If the code runed fine, but results were unexpected, I tried different parameters till 
 I found the problem. 
 
-*What worked well:*
+*What worked well:*  
 Everthing worked alright most of the times.
 
-*What was hard:*
+*What was hard:*  
 Errors resulting from mysterious function outputs/input requirements which are hard to debug.
 
 ### Version control & remotes (W4)
 
-*What we did:*
+*What we did:*  
 Using git, issues for every problem with their own branches and prs.
 
-*What worked well:*
+*What worked well:*  
 Keeping everything organized.
 
-*What was hard:*
-Accidentaly pushing pr to the wrong branches was sometimes an issue or using
+*What was hard:*  
+Accidentaly pushing pr to the wrong branches was sometimes an issue or using 
 the wrong source branch for a new branch. Basically mistakes that are easy to overlook.
 
 ### Quarto websites & collaborative coding (W5)
 
-*What we did:*
+*What we did:*  
 Enabeling the website and updating it from time to time by rendering new elements to docs.
 
-*What worked well:*
+*What worked well:*  
 Everything.
 
-*What was hard:*
+*What was hard:*  
 Nothing.
 
 ### R packages (W6)
 
-*What we did:*
+*What we did:*  
 Installing some packages to a renv.
 
-*What worked well:*
+*What worked well:*  
 Everything that wasn't hard.
 
-*What was hard:*
+*What was hard:*  
 Sometimes packages had issues when installing at first. But it worked fine after repetition.
 
 ### Initial data analysis & data cleaning (W7)
 
-*What we did:*
-Not much, as the dataset was already tidy.
-But I added some new columns which made other columns redundant which I deleted then.
+*What we did:*  
+Not much, as the dataset was already tidy. 
+But I added some new columns which made other columns redundant which I deleted then. 
 The initial data analysis went smoothly.
 
-*What worked well:*
+*What worked well:*  
 Everthing that wasn't hard.
 
-*What was hard:*
+*What was hard:*  
 Transforming the columns at first, but got it down after trying some times.
 
 ### Reproducibility, open data & renv (W9)
 
-*What we did:*
-Using the template from the REAME.md.
-The only thing I had to change was the download of the dataset.
-I needed to integrate python code and added a small tutorial on how to set the python
+*What we did:*  
+Using the template from the REAME.md. 
+The only thing I had to change was the download of the dataset. 
+I needed to integrate python code and added a small tutorial on how to set the python 
 runtime up.
 
-*What worked well:*
+*What worked well:*  
 Everything, as the reproducibility is already in the code.
 
-*What was hard:*
-Trying to find a way to use here instead of the python method at first, but I settled
+*What was hard:*  
+Trying to find a way to use here instead of the python method at first, but I settled 
 with the second method.
 
 ### Analysis & inference strategies (W10)
 
-*What we did:*
-Correlation plots, facetting for multiple plots and a regressing model for recommendations
+*What we did:*  
+Correlation plots, facetting for multiple plots and a regressing model for recommendations 
 on how a student should use AI for a better GPA.
 
-*What worked well:*
+*What worked well:*  
 The plots worked fine, especially the facetting.
 
-*What was hard:*
-The model as I had no experience with implementing machine learning models before,
+*What was hard:*  
+The model as I had no experience with implementing machine learning models before, 
 but it worked out after some trial and errors and drowning the AI with questions.
 
 ### Communication & visualisation (W11)
 
-*What we did:*
+*What we did:*  
 Using multiple plots with easy to digest labeling and comments.
 
-*What worked well:*
+*What worked well:*  
 Everthing was fine.
 
-*What was hard:*
-Sometimes I had difficulties formatting my outputs in the qmd as I have litte experience
+*What was hard:*  
+Sometimes I had difficulties formatting my outputs in the qmd as I have litte experience 
 with style formatting.
 
 ## Key analytical decisions
@@ -124,42 +124,42 @@ Describe 2–3 decisions that had a meaningful effect on your results or workflo
 
 ### Decision 1: Machine Learning vs Simple Correlation Plots
 
-*What were we deciding between?*
-Using machine learning or just the easy quick was with some correlation plots to find out what kind of AI-Usage is recommended
+*What were we deciding between?*  
+Using machine learning or just the easy quick was with some correlation plots to find out what kind of AI-Usage is recommended 
 for the best GPA-score. 
 
-*How did we reason through it?*
-What can give a better insight about the causation was one deciding factor.
-I settled for machine learning.
+*How did we reason through it?*  
+What can give a better insight about the causation was one deciding factor. 
+I settled for machine learning. 
 Honestly I just wanted to try out machine learning and it was worth it.
 
-*In hindsight, would we decide differently?*
+*In hindsight, would we decide differently?*  
 Nothing really.
 
 ### Decision 2: Providing full download tutorial vs linking source 
 
-*What were we deciding between?*
-If i should provide a full cross-language download way with a tutorial or just linking
+*What were we deciding between?*  
+If i should provide a full cross-language download way with a tutorial or just linking 
 to the source where many download alternatives were listed.
 
-*How did we reason through it?*
-The download process is an important factor for reproducibility and even got a dedicated
-file in the template. Just leaving it alone with a comment "look up the source: link"
+*How did we reason through it?*  
+The download process is an important factor for reproducibility and even got a dedicated 
+file in the template. Just leaving it alone with a comment "look up the source: link" 
 felt not right, so I settled with the other way.
 
-*In hindsight, would we decide differently?*
+*In hindsight, would we decide differently?*  
 Nothing as it works fine and I think it was the best alternative.
 
 ## Workflow & collaboration
 
-*How did we divide work across group members?*
+*How did we divide work across group members?*  
 I was the only member.
 
-*What branching or Git workflow did we actually use — and did it match the proposal?*
+*What branching or Git workflow did we actually use — and did it match the proposal?*  
 I used many different features of git/github.
 I think it satisfied the proposal.
 
-*What would we change about how we coordinated?*
+*What would we change about how we coordinated?*  
 -
 
 ## LLM usage
@@ -168,12 +168,18 @@ Describe up to 5 significant uses of an LLM tool during the project.
 
 ### Usage 1: Explanations
 
-- **Tool / model:** Gemini
-- **What it produced:** Explanations on errors, on R/qmd, how to do machine learning in R.
-- **What we had to correct or verify:** Some explanations on machine learning were under false assumptions (e.g. linear data).
+- **Tool / model:**  
+Gemini
+- **What it produced:**  
+Explanations on errors, on R/qmd, how to do machine learning in R.
+- **What we had to correct or verify:**  
+Some explanations on machine learning were under false assumptions (e.g. linear data).
 
 ### Usage 2: Code generation
 
-- **Tool / model:** Gemini
-- **What it produced:** Some example code how to build my model given the idea I had in the comment in 04_analysis. Had to thinker around with it for a while and tried different approaches. Eventually I got it to work and then changed it around to my needs.
-- **What we had to correct or verify:** Often it didn't get the required packages right or sometimes the types of input parameters were incorrect in a function input.
+- **Tool / model:**  
+Gemini
+- **What it produced:**  
+Some example code how to build my model given the idea I had in the comment in 04_analysis. Had to thinker around with it for a while and tried different approaches. Eventually I got it to work and then changed it around to my needs.
+- **What we had to correct or verify:**  
+Often it didn't get the required packages right or sometimes the types of input parameters were incorrect in a function input.
