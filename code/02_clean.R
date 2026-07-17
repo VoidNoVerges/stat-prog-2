@@ -64,7 +64,8 @@ round_3 <- function(x) {
 }
 
 cleaned <- raw |>
-  # Ensure no duplicate student IDs.
+  # Every row (<=> student) is identified by a student ID (100001-150000) in the column Student_ID.
+  # distinct is called to ensure there are no duplicate rows.
   distinct() |>
   # Remove unwanted whitespaces.
   mutate(across(where(is.character), stringr::str_squish)) |>

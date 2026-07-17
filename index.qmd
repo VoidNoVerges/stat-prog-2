@@ -1,24 +1,54 @@
 ---
-title: "Project Title"
+title: "StatProg2 - A statistical programming exercise on student AI behaviour"
 author:
-  - "Group Member 1"
-  - "Group Member 2"
-  - "Group Member 3"
+  - "Paul Gustav Hoffmann"
 date: today
 ---
 
 ## Introduction
 
-<!-- Motivate the dataset and research questions. -->
+Our world has changed a lot since the rise of generative AI
+including our everyday life, economy and how we learn things.
+Questions arise how students are affected by these changes
+and how they can benefit most from generative AI for their academic success.  
+
+To give insights into this matter we will try to anwser following questions
+given the synthetic dataset "Impact of Ai on Students" by laveshjadon:
+
+*1. In which majors is the GPA most affected by heavier AI Usage?*  
+*2. How can AI be used for the best GPA score?*
 
 ## Data
 
-<!-- Brief description of the dataset. -->
+The synthetic dataset "Impact of Ai on Students" by laveshjadon is about the generative AI usage of students and its effects on them.
+It features 50000 simulated students with 16 features.
+They capture various key information of the students (e.g. their major, study year & GPA score),
+but also how they use generative AI (e.g. which tools they use, which usecase they have & their prompting skills).
 
 ## Results
 
-<!-- Summary of key findings. -->
+First, we observed that heavy AI usage seems to have a beneficial effect on the grade
+when using it for more than half of the learn time and this is independent of the majors.  
+Using it much and correctly gives some outliers even a huge boost to their grade
+which fortifies the need of the second question.  
+
+Secondly, we have created a model which is able to tell a student how AI can be used best
+for them.
 
 ## Discussion
 
-<!-- Interpret results, limitations, and next steps. -->
+Given the dataset is synthetic, the observations and conclusions from this research
+might be statistically correct, but the dataset (even though realistic) is prone to have
+biases which might make these findings in fact incorrect. Caution is a must.  
+
+Keep in mind that the first observation comes from the GPA change over one semester,
+so heavy AI usage might as well only be a short time gain or might even worsen the GPA
+in the long term. This data alone cannot anwser that.  
+But what one could certainly draw from this is that AI can help in a buisy semester.  
+
+The model is bound to have some biases, given synthetic data cannot be a perfect
+representation of the real word, but I believe it can still give a good suggestion,
+when questioning the results and building on them. 
+However, one major flaw is that the data doesn't include long-term effects (only GPA 
+change over one semester). The model cannot represent them accordingly which might be a 
+dangerous restriction.

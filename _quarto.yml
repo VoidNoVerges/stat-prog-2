@@ -16,5 +16,5 @@ website:
 format:
   html:
     toc: true
-    code-fold: true
+    code-fold: show
     theme: cosmo

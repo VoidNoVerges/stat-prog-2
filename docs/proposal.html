@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Group Member 1">
-<meta name="author" content="Group Member 2">
-<meta name="author" content="Group Member 3">
-<meta name="dcterms.date" content="2026-06-08">
+<meta name="author" content="Paul Gustav Hoffmann">
+<meta name="dcterms.date" content="2026-07-16">
 
 <title>Project Proposal – StatProg2 Group Project</title>
 <style>
@@ -178,18 +176,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Group Member 1 </p>
-             <p>Group Member 2 </p>
-             <p>Group Member 3 </p>
+             <p>Paul Gustav Hoffmann </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 8, 2026</p>
+      <p class="date">July 16, 2026</p>
     </div>
   </div>
   
@@ -204,66 +200,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="dataset" class="level2">
 <h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
 <!-- Describe the dataset: source, licence, dimensions, key variables. -->
-<p>The source of the data is:<br>
-https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv</p>
-<p>The data is licenced under CC0 1.0 Universal:<br>
-(https://creativecommons.org/publicdomain/zero/1.0/)</p>
+<p>The synthetic dataset is called <a href="https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv">“Impact of Ai on Students”</a> and is created by laveshjadon.<br>
+It is licenced under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</a>.</p>
 <p><em>Content:</em><br>
-The dataset “Impact of Ai on Students” is about the generative AI usage of students and its effects on them.</p>
-<p>There are 50000 rows representing 50000 observed students. Also 16 observed features are listed in its 16 columns.<br>
-They capture various key information of the students (e.g.&nbsp;their major, study year &amp; GPA score), but also how they use generative AI (e.g.&nbsp;which tools they use, which usecase they have &amp; their prompting skills).</p>
+The synthetic dataset “Impact of Ai on Students” is about the generative AI usage of students and its effects on them. There are 50000 rows representing 50000 simulated students. Also, 16 simulated features are listed in their 16 columns. They capture various key information of the students (e.g., their major, study year &amp; GPA score), but also how they use generative AI (e.g., which tools they use, which use case they have &amp; their prompting skills).</p>
+<p><em>Where does the data come from?</em><br>
+The data is synthetically generated as stated in the provenance tab of the source.<br>
+However, I reason that the data is sensibly created and is suitable for further research for the following reasons:<br>
+- Good documentation (namely the creation process)<br>
+- Vastly exposed to the public in the form of downloads, discussions, or notebooks<br>
+- The creator has a comprehensive track record on Kaggle</p>
 </section>
 <section id="research-questions" class="level2">
 <h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
 <p><em>1. In which majors is the GPA most affected by heavier AI Usage?</em><br>
-<em>2. How is can AI be used for the best GPA score?</em></p>
-<p>The audience for this analysis are students which want to understand how much AI is good and normal to use in their field for a better grade. The overall message is more important then the details for this scenario, so simple visualizations like graphs without clutter should work best.</p>
+<em>2. How can AI be used for the best GPA score?</em></p>
+<p>The audience for this analysis is students who want to understand how good AI is and normal to use in their field for a better grade. The overall message is more important than the details for this scenario. So simple visualizations like graphs without clutter should work best.</p>
 </section>
 <section id="initial-eda" class="level2">
 <h2 class="anchored" data-anchor-id="initial-eda">Initial EDA</h2>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"ai_student_impact_dataset (1).csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.6
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.2     ✔ tibble    3.3.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.2
-✔ purrr     1.2.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<details class="code-fold">
+<div class="cell">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at G:/Coding/github_repositories/stat-prog-2</code></pre>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"ai_student_impact_dataset (1).csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 50000 Columns: 16
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (6): Major_Category, Year_of_Study, Primary_Use_Case, Prompt_Engineering...
-dbl (9): Student_ID, Pre_Semester_GPA, Weekly_GenAI_Hours, Tool_Diversity, T...
-lgl (1): Paid_Subscription
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data overview</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 50,000
@@ -285,9 +253,9 @@ $ Post_Semester_GPA          &lt;dbl&gt; 2.393, 3.696, 3.499, 4.000, 3.798, 3.66
 $ Skill_Retention_Score      &lt;dbl&gt; 86.44, 69.39, 73.93, 63.58, 100.00, 65.92, …
 $ Burnout_Risk_Level         &lt;chr&gt; "High", "Low", "Medium", "Medium", "Medium"…</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Student_ID     Major_Category     Year_of_Study      Pre_Semester_GPA
@@ -327,46 +295,66 @@ $ Burnout_Risk_Level         &lt;chr&gt; "High", "Low", "Medium", "Medium", "Med
  Max.   :100.00                          </code></pre>
 </div>
 </div>
-<!-- Add 2–3 exploratory plots and a brief commentary on what you observe. -->
+<p><em>Issues with the dataset?</em><br>
+The dataset is pretty clean as it has no missing values or weird formatting. Overall, there are <em>no</em> issues with the values in the dataset.</p>
+<p>Now that we know more about the dataset, let’s do some EDA:</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Paid_Subscription, <span class="at">y =</span> Tool_Diversity)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Paid_Subscription, <span class="at">y =</span> Tool_Diversity)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="proposal_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="proposal_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Interestingly the tool diversity doesn’t seem to be affected by the student using a paid subscription or not.</p>
+<p>Interestingly, the tool diversity doesn’t seem to be affected by the student using a paid subscription or not.</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Major_Category, <span class="at">y =</span> Weekly_GenAI_Hours)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Major_Category, <span class="at">y =</span> Weekly_GenAI_Hours)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="proposal_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="proposal_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Students in the business sector seem to use AI the most while people who use it the last are in the field of humanities.<br>
-But this</p>
-<p><em>Issues?</em><br>
-The dataset is pretty clean as it has no missing values or weird formatting. Overall there are <em>no</em> issues with the values in the dataset.</p>
+<p>Students in the business sector seem to use AI the most for studying, while people who use it the least are in the field of humanities.</p>
+<p>But this doesn’t consider the traditional learning hours at all. So we might have a bias if there are differences in the total learning hours between the majors.<br>
+E.g., students of one major might use generative AI for fewer hours than others, while also learning way less in general. This would result in them using generative AI more than other majors when they learn, while the opposite is shown in the plot.</p>
+<p>We can resolve this by looking at the percentage of AI used for learning instead:<br>
+y = Weekly_GenAI_Hours / (Weekly_GenAI_Hours + Traditional_Study_Hours)</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Major_Category, <span class="at">y =</span> Weekly_GenAI_Hours <span class="sc">/</span> (Weekly_GenAI_Hours <span class="sc">+</span> Traditional_Study_Hours))) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Major Category"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Heaviness of AI-Usage for learning"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="proposal_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Luckily we can see that nothing truely changes, when also considering the traditional study hours.</p>
 </section>
 <section id="analysis-plan" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h2>
-<!-- Outline the methods you plan to use to answer your research questions. -->
-<p>The most important variable I am going to use is the GPA as the goal is to measure the student performance affected by AI.<br>
-For question 1 I also need the weekly generative AI study hours and the traditional study hours to measure how heavy the student’s AI usage is in procents. Other variables like tool diversity might also be interesting for this even though less important.<br>
-For question 2 the variables paid subscriptions and tool diversity are important, but also the primary use case.<br>
-The uncertainties are less of a incomplete or flawed dataset, but which variables are fair to be weighed against another to give the best persepctive for the questions.</p>
+<p>The most important variables I am going to use are the pre and post semester GPA, as for both questions we need to measure the students’ performance affected by AI.</p>
+<p>For question 1, we also need the weekly generative AI study hours and the traditional study hours to measure how heavy the students’ AI usage is in percentages. To compare the majors in the first place, we need the accordingly called column. As we have 3 dimensions now, faceting between the majors is the way to avoid clutter.</p>
+<p>For question 2, the idea is to create a model which can predict how students should use AI to improve the GPA score, given some information about the student. This will surely use most columns of the dataset.</p>
 
 
 </section>
