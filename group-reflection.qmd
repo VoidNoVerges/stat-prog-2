@@ -4,8 +4,7 @@ title: "Group Reflection"
 
 ## Skills inventory
 
-For each skill area, describe what your group actually used it for.
-If you did not use a skill, say so and note why.
+Git, Github (Issues, PRs), R, Python, Machine Learning Knowledge 
 
 ### Functions & refactoring (W2)
 
