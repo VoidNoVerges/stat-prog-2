@@ -12,6 +12,8 @@ website:
         text: Proposal
       - href: report.qmd
         text: Report
+      - href: group-reflection.qmd
+        text: Reflection
 
 format:
   html:
