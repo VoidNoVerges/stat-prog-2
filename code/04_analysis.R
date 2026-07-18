@@ -111,6 +111,20 @@ give_recommendations <- function(predicted_combinations) {
       )
 }
 
-recommendations <- give_recommendations(predict_combinations(2.3, "Business", "Freshman", "Actively_Encouraged"))
+clean_predictions <- function(predictions) {
+   get_mode <- function(x) {
+      if (all(is.na(x))) {
+         return(NA_character_)
+      }
+      modes <- table(x, useNA = "no")
+      names(modes)[which.max(modes)]
+   }
 
-print(recommendations, width = Inf)
+   predictions |>
+      group_by(Predicted_Post_Semester_GPA) |>
+      summarise(
+         across(where(is.numeric), mean, na.rm = TRUE),
+         across(where(is.character), get_mode),
+         .groups = "drop"
+      )
+}
