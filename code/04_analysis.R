@@ -93,7 +93,7 @@ predict_combinations <- function(
 
    all_combinations_with_fix_cols |>
       mutate(
-         Predicted_Post_Semester_GPA = predict(model_fit, new_data = all_combinations_with_fix_cols)$.pred
+         Predicted_Post_Semester_GPA = round(predict(model_fit, new_data = all_combinations_with_fix_cols), 2)
       )
 }
 
