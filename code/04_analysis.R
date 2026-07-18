@@ -37,7 +37,7 @@ library(lightgbm)
 library(finetune)
 
 
-give_recommendations <- function(pre_semester_gpa = ? numeric, major_category = ? character, year_of_study = ? character, institutional_policy = ? character) {
+build_model_fit <- function() {
    data <- read_csv(here("data", "processed", "data_clean.csv")) |>
       select(-c(
          Student_ID, Perceived_AI_Dependency, Anxiety_Level_During_Exams,
@@ -58,16 +58,28 @@ give_recommendations <- function(pre_semester_gpa = ? numeric, major_category = 
       add_recipe(recipe) |>
       add_model(specification) |>
       fit(data = data)
+}
 
-   hypothesis_space <- list(
-      Weekly_Study_Hours = seq(1, 40, by = 1),
-      Percentage_Of_AI_Usage = seq(0.0, 1.0, by = 0.01),
-      Tool_Diversity = 1:5,
-      Primary_Use_Case = c("Copywriting/Drafting", "Ideation", "Summarizing_Reading", "Debugging/Troubleshooting", "Direct_Answer_Generation"),
-      Paid_Subscription = c(TRUE, FALSE),
-      Prompt_Engineering_Skill = c("Beginner", "Intermediate", "Advanced")
-   )
+model_fit <- build_model_fit()
 
+hypothesis_space <- list(
+   Weekly_Study_Hours = seq(1, 40, by = 1),
+   Percentage_Of_AI_Usage = seq(0.0, 1.0, by = 0.01),
+   Tool_Diversity = 1:5,
+   Primary_Use_Case = c(
+      "Copywriting/Drafting", "Ideation", "Summarizing_Reading",
+      "Debugging/Troubleshooting", "Direct_Answer_Generation"
+   ),
+   Paid_Subscription = c(TRUE, FALSE),
+   Prompt_Engineering_Skill = c("Beginner", "Intermediate", "Advanced")
+)
+
+predict_combinations <- function(
+  pre_semester_gpa = ? numeric,
+  major_category = ? character,
+  year_of_study = ? character,
+  institutional_policy = ? character
+) {
    all_combinations <- cross_df(hypothesis_space)
 
    all_combinations_with_fix_cols <- all_combinations |>
@@ -79,12 +91,14 @@ give_recommendations <- function(pre_semester_gpa = ? numeric, major_category = 
          Institutional_Policy = institutional_policy
       )
 
-   results <- all_combinations_with_fix_cols |>
+   all_combinations_with_fix_cols |>
       mutate(
          Predicted_Post_Semester_GPA = predict(model_fit, new_data = all_combinations_with_fix_cols)$.pred
       )
+}
 
-   best_results <- results |>
+give_recommendations <- function(predicted_combinations) {
+   best_results <- predicted_combinations |>
       arrange(desc(Predicted_Post_Semester_GPA)) |>
       slice_head(n = 10)
 
@@ -96,6 +110,6 @@ give_recommendations <- function(pre_semester_gpa = ? numeric, major_category = 
       )
 }
 
-recommendations = give_recommendations(2.3, "Business", "Freshman", "Actively_Encouraged")
+recommendations <- give_recommendations(predict_combinations(2.3, "Business", "Freshman", "Actively_Encouraged"))
 
 print(recommendations, width = Inf)
