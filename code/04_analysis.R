@@ -128,3 +128,8 @@ clean_predictions <- function(predictions) {
          .groups = "drop"
       )
 }
+
+major_categories <- c("STEM", "Medical", "Arts", "Business", "Humanities")
+years_of_study <- c("Junior", "Senior", "Graduate", "Sophomore", "Freshman")
+institutional_policies <- c("Strict_Ban", "Allowed_With_Citation", "Actively_Encouraged")
+gpa_vector <- seq(from = 1.0, to = 4.0, by = 0.1)
