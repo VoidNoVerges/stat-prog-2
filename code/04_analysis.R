@@ -142,39 +142,42 @@ total_iterations <- length(major_categories) *
 current_iteration <- 1
 start_time <- Sys.time()
 
+calculate_df <- function(mc, ip, yos) {
+   df <- NULL
+         
+   for (gpa in gpa_vector) {
+      
+      predictions <- predict_combinations(gpa, mc, yos, ip, 50000)
+      cleaned_predictions <- clean_predictions(predictions)
+      df <- bind_rows(df, cleaned_predictions)
+
+      current_iteration <- current_iteration + 1
+      remaining_iterations <- total_iterations - current_iteration
+
+      done_p <- (current_iteration / total_iterations) * 100
+      
+      elapsed_time <- as.numeric(difftime(Sys.time(), start_time, units = "secs"))
+      time_per_iteration <- elapsed_time / current_iteration
+      remaining_time_secs <- time_per_iteration * remaining_iterations
+      
+      if (remaining_time_secs < 60) {
+         time_string <- sprintf("%.1f Seconds", remaining_time_secs)
+      } else if (remaining_time_secs < 3600) {
+         time_string <- sprintf("%.1f Minutes", remaining_time_secs / 60)
+      } else {
+         time_string <- sprintf("%.2f Hours", remaining_time_secs / 3600)
+      }
+      
+      cat(sprintf("Progress: %f%% | Remaining time: %s\n", done_p, time_string))
+   }
+
+   print(df)
+}
+
 for (mc in major_categories) {
    for (ip in institutional_policies) {
       for (yos in years_of_study) {
-         
-         df <- NULL
-         
-         for (gpa in gpa_vector) {
-            
-            predictions <- predict_combinations(gpa, mc, yos, ip, 50000)
-            cleaned_predictions <- clean_predictions(predictions)
-            df <- bind_rows(df, cleaned_predictions)
-
-            current_iteration <- current_iteration + 1
-            remaining_iterations <- total_iterations - current_iteration
-
-            done_p <- (current_iteration / total_iterations) * 100
-            
-            elapsed_time <- as.numeric(difftime(Sys.time(), start_time, units = "secs"))
-            time_per_iteration <- elapsed_time / current_iteration
-            remaining_time_secs <- time_per_iteration * remaining_iterations
-            
-            if (remaining_time_secs < 60) {
-               time_string <- sprintf("%.1f Seconds", remaining_time_secs)
-            } else if (remaining_time_secs < 3600) {
-               time_string <- sprintf("%.1f Minutes", remaining_time_secs / 60)
-            } else {
-               time_string <- sprintf("%.2f Hours", remaining_time_secs / 3600)
-            }
-            
-            cat(sprintf("Progress: %f%% | Remaining time: %s\n", done_p, time_string))
-         }
-
-         print(df)
+         calculate_df(mc, ip, yos)
       }
    }
 }
