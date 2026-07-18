@@ -151,7 +151,7 @@ calculate_df <- function(mc, ip, yos) {
       cleaned_predictions <- clean_predictions(predictions)
       df <- bind_rows(df, cleaned_predictions)
 
-      current_iteration <- current_iteration + 1
+   current_iteration <<- current_iteration + 1
       remaining_iterations <- total_iterations - current_iteration
 
       done_p <- (current_iteration / total_iterations) * 100
