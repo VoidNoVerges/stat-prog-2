@@ -78,12 +78,13 @@ predict_combinations <- function(
   pre_semester_gpa = ? numeric,
   major_category = ? character,
   year_of_study = ? character,
-  institutional_policy = ? character
+  institutional_policy = ? character,
+  samples = ? integer
 ) {
    all_combinations <- cross_df(hypothesis_space)
 
    all_combinations_with_fix_cols <- all_combinations |>
-      # slice_sample(n = 50000) |>
+      slice_sample(n = samples) |>
       mutate(
          Pre_Semester_GPA     = pre_semester_gpa,
          Major_Category       = major_category,
