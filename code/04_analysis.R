@@ -134,7 +134,7 @@ total_iterations <- length(major_categories) *
    length(institutional_policies) *
    length(years_of_study)
 
-current_iteration <- 1
+current_iteration <- 0
 start_time <- Sys.time()
 
 calculate_df <- function(mc, ip, yos) {
