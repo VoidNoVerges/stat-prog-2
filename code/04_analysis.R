@@ -130,26 +130,13 @@ years_of_study <- c("Junior", "Senior", "Graduate", "Sophomore", "Freshman")
 institutional_policies <- c("Strict_Ban", "Allowed_With_Citation", "Actively_Encouraged")
 gpa_vector <- seq(from = 1.0, to = 4.0, by = 0.1)
 
+start_time <- Sys.time()
+current_iteration <- 0
 total_iterations <- length(major_categories) *
    length(institutional_policies) *
    length(years_of_study)
 
-current_iteration <- 0
-start_time <- Sys.time()
-
-calculate_df <- function(mc, ip, yos) {
-   combinations <- bind_rows(lapply(gpa_vector, function(gpa) {
-      build_combinations(gpa, mc, yos, ip, 50000)
-   }))
-
-   combinations <- combinations |>
-      mutate(
-         Predicted_Post_Semester_GPA = round(predict(model_fit, new_data = combinations)$.pred, 2)
-      )
-
-   # group_split is used for ordering the Pre_Semester_GPA values.
-   df <- bind_rows(lapply(group_split(combinations, Pre_Semester_GPA), clean_predictions))
-
+print_progress_time <- function() {
    current_iteration <<- current_iteration + 1
    remaining_iterations <- total_iterations - current_iteration
 
@@ -168,6 +155,22 @@ calculate_df <- function(mc, ip, yos) {
    }
 
    cat(sprintf("Progress: %.2f%% | Remaining time: %s\n", progress, time_string))
+}
+
+calculate_df <- function(mc, ip, yos) {
+   combinations <- bind_rows(lapply(gpa_vector, function(gpa) {
+      build_combinations(gpa, mc, yos, ip, 50000)
+   }))
+
+   combinations <- combinations |>
+      mutate(
+         Predicted_Post_Semester_GPA = round(predict(model_fit, new_data = combinations)$.pred, 2)
+      )
+
+   # group_split is used for ordering the Pre_Semester_GPA values.
+   df <- bind_rows(lapply(group_split(combinations, Pre_Semester_GPA), clean_predictions))
+
+   print_progress_time()
 
    df
 }
