@@ -37,6 +37,7 @@ library(lightgbm)
 library(finetune)
 
 
+
 build_model_fit <- function() {
    data <- read_csv(here("data", "processed", "data_clean.csv")) |>
       select(-c(
@@ -74,16 +75,9 @@ hypothesis_space <- list(
    Prompt_Engineering_Skill = c("Beginner", "Intermediate", "Advanced")
 )
 
-predict_combinations <- function(
-  pre_semester_gpa = ? numeric,
-  major_category = ? character,
-  year_of_study = ? character,
-  institutional_policy = ? character,
-  samples = ? integer
-) {
+build_combinations <- function(pre_semester_gpa, major_category, year_of_study, institutional_policy, samples) {
    all_combinations <- cross_df(hypothesis_space)
-
-   all_combinations_with_fix_cols <- all_combinations |>
+   all_combinations |>
       slice_sample(n = samples) |>
       mutate(
          Pre_Semester_GPA     = pre_semester_gpa,
@@ -91,14 +85,15 @@ predict_combinations <- function(
          Year_of_Study        = year_of_study,
          Institutional_Policy = institutional_policy
       )
-
-   all_combinations_with_fix_cols |>
-      mutate(
-         Predicted_Post_Semester_GPA = round(predict(model_fit, new_data = all_combinations_with_fix_cols), 2)
-      )
 }
 
-give_recommendations <- function(predicted_combinations) {
+give_recommendations <- function(built_combinations) {
+
+   predicted_combinations <- built_combinations |>
+      mutate(
+         Predicted_Post_Semester_GPA = round(predict(model_fit, new_data = built_combinations), 2)
+      )
+
    best_results <- predicted_combinations |>
       arrange(desc(Predicted_Post_Semester_GPA)) |>
       slice_head(n = 10)
@@ -134,43 +129,45 @@ years_of_study <- c("Junior", "Senior", "Graduate", "Sophomore", "Freshman")
 institutional_policies <- c("Strict_Ban", "Allowed_With_Citation", "Actively_Encouraged")
 gpa_vector <- seq(from = 1.0, to = 4.0, by = 0.1)
 
-total_iterations <- length(major_categories) * 
-                     length(institutional_policies) * 
-                     length(years_of_study) * 
-                     length(gpa_vector)
+total_iterations <- length(major_categories) *
+   length(institutional_policies) *
+   length(years_of_study)
 
 current_iteration <- 1
 start_time <- Sys.time()
 
 calculate_df <- function(mc, ip, yos) {
-   df <- NULL
-         
-   for (gpa in gpa_vector) {
-      
-      predictions <- predict_combinations(gpa, mc, yos, ip, 50000)
-      cleaned_predictions <- clean_predictions(predictions)
-      df <- bind_rows(df, cleaned_predictions)
+
+   combinations <- bind_rows(lapply(gpa_vector, function(gpa) {
+      build_combinations(gpa, mc, yos, ip, 50000)
+   }))
+
+   combinations <- combinations |>
+      mutate(
+         Predicted_Post_Semester_GPA = round(predict(model_fit, new_data = combinations), 2)
+      )
+
+   # group_split is used for ordering the Pre_Semester_GPA values.
+   df <- bind_rows(lapply(group_split(combinations, Pre_Semester_GPA), clean_predictions))
 
    current_iteration <<- current_iteration + 1
-      remaining_iterations <- total_iterations - current_iteration
+   remaining_iterations <- total_iterations - current_iteration
 
-      done_p <- (current_iteration / total_iterations) * 100
-      
-      elapsed_time <- as.numeric(difftime(Sys.time(), start_time, units = "secs"))
-      time_per_iteration <- elapsed_time / current_iteration
-      remaining_time_secs <- time_per_iteration * remaining_iterations
-      
-      if (remaining_time_secs < 60) {
-         time_string <- sprintf("%.1f Seconds", remaining_time_secs)
-      } else if (remaining_time_secs < 3600) {
-         time_string <- sprintf("%.1f Minutes", remaining_time_secs / 60)
-      } else {
-         time_string <- sprintf("%.2f Hours", remaining_time_secs / 3600)
-      }
-      
-      cat(sprintf("Progress: %f%% | Remaining time: %s\n", done_p, time_string))
+   progress <- (current_iteration / total_iterations) * 100
+
+   elapsed_time <- as.numeric(difftime(Sys.time(), start_time, units = "secs"))
+   time_per_iteration <- elapsed_time / current_iteration
+   remaining_time_secs <- time_per_iteration * remaining_iterations
+
+   if (remaining_time_secs < 60) {
+      time_string <- sprintf("%.1f Seconds", remaining_time_secs)
+   } else if (remaining_time_secs < 3600) {
+      time_string <- sprintf("%.1f Minutes", remaining_time_secs / 60)
+   } else {
+      time_string <- sprintf("%.2f Hours", remaining_time_secs / 3600)
    }
 
+   cat(sprintf("Progress: %.2f%% | Remaining time: %s\n", progress, time_string))
    print(df)
 }
 
