@@ -120,7 +120,7 @@ clean_predictions <- function(predictions) {
       group_by(Predicted_Post_Semester_GPA) |>
       summarise(
          across(where(is.numeric), mean, na.rm = TRUE),
-         across(where(is.character), get_mode),
+         across(where(is.character) | where(is.logical), get_mode),
          .groups = "drop"
       )
 }
