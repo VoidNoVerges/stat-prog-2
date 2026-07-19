@@ -107,24 +107,6 @@ give_recommendations <- function(built_combinations) {
       )
 }
 
-clean_predictions <- function(predictions) {
-   get_mode <- function(x) {
-      if (all(is.na(x))) {
-         return(NA_character_)
-      }
-      modes <- table(x, useNA = "no")
-      names(modes)[which.max(modes)]
-   }
-
-   predictions |>
-      group_by(Predicted_Post_Semester_GPA) |>
-      summarise(
-         across(where(is.numeric), mean, na.rm = TRUE),
-         across(where(is.character) | where(is.logical), get_mode),
-         .groups = "drop"
-      )
-}
-
 major_categories <- c("STEM", "Medical", "Arts", "Business", "Humanities")
 years_of_study <- c("Junior", "Senior", "Graduate", "Sophomore", "Freshman")
 institutional_policies <- c("Strict_Ban", "Allowed_With_Citation", "Actively_Encouraged")
@@ -155,6 +137,24 @@ print_progress_time <- function() {
    }
 
    cat(sprintf("Progress: %.2f%% | Remaining time: %s\n", progress, time_string))
+}
+
+clean_predictions <- function(predictions) {
+   get_mode <- function(x) {
+      if (all(is.na(x))) {
+         return(NA_character_)
+      }
+      modes <- table(x, useNA = "no")
+      names(modes)[which.max(modes)]
+   }
+
+   predictions |>
+      group_by(Predicted_Post_Semester_GPA) |>
+      summarise(
+         across(where(is.numeric), mean, na.rm = TRUE),
+         across(where(is.character) | where(is.logical), get_mode),
+         .groups = "drop"
+      )
 }
 
 calculate_df <- function(mc, ip, yos) {
