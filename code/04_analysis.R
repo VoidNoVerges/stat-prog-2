@@ -75,9 +75,10 @@ hypothesis_space <- list(
    Prompt_Engineering_Skill = c("Beginner", "Intermediate", "Advanced")
 )
 
+hypothesis_grid <- cross_df(hypothesis_space)
+
 build_combinations <- function(pre_semester_gpa, major_category, year_of_study, institutional_policy, samples) {
-   all_combinations <- cross_df(hypothesis_space)
-   all_combinations |>
+   hypothesis_grid |>
       slice_sample(n = samples) |>
       mutate(
          Pre_Semester_GPA     = pre_semester_gpa,
