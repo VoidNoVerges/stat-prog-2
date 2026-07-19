@@ -92,7 +92,7 @@ give_recommendations <- function(built_combinations) {
 
    predicted_combinations <- built_combinations |>
       mutate(
-         Predicted_Post_Semester_GPA = round(predict(model_fit, new_data = built_combinations), 2)
+         Predicted_Post_Semester_GPA = round(predict(model_fit, new_data = built_combinations)$.pred, 2)
       )
 
    best_results <- predicted_combinations |>
