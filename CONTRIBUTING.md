@@ -13,7 +13,7 @@
 <!-- Complete per the department guidelines:
      https://docs.google.com/document/d/1mQ5YAWKDt9Ax4LvK-wuUzO5XfCI0e-ZGdk49ghb08Ds -->
 
-We used the following AI tools in this project:
+I used the following AI tools in this project:
 
 | Tool | Purpose | Scope |
 |------|---------|-------|
