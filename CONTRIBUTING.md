@@ -4,10 +4,9 @@
 
 <!-- Fill in after the project is complete. -->
 
-**[Name]** — [files/sections responsible for]
-- [Key task 1]
-- [Key task 2]
-- [Collaborative tasks]
+**[Paul Gustav Hoffmann]**
+- Code: everything
+- Github: everything
 
 ## AI Tool Disclosure
 
