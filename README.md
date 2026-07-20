@@ -37,7 +37,7 @@ but also how they use generative AI (e.g. which tools they use, which usecase th
 ```
 data/raw/        read-only raw data and licence documentation
 data/processed/  cleaned data produced by code/02_clean.R
-code/            numbered R scripts (01 download → 02 clean → 03 EDA → 04 analysis)
+code/            numbered R scripts (01 download → 02 clean → 03 EDA → 04 analysis/model_visualization)
 docs/            rendered Quarto website output (auto-generated, do not edit)
 proposal.qmd     W07 project proposal
 report.qmd       final analysis report
@@ -56,7 +56,7 @@ renv::restore()   # if using renv, otherwise install packages manually
 # 3. Run the pipeline in order
 source("code/02_clean.R")
 source("code/03_eda.R")
-source("code/04_analysis.R")
+source("code/04_analysis/model_visualization.R")
 
 # 4. Render the website
 quarto::quarto_render()
