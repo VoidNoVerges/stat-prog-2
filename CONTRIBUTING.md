@@ -9,16 +9,6 @@
 - [Key task 2]
 - [Collaborative tasks]
 
-**[Name]** — [files/sections responsible for]
-- [Key task 1]
-- [Key task 2]
-- [Collaborative tasks]
-
-**[Name]** — [files/sections responsible for]
-- [Key task 1]
-- [Key task 2]
-- [Collaborative tasks]
-
 ## AI Tool Disclosure
 
 <!-- Complete per the department guidelines:
