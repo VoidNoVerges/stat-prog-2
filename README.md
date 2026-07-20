@@ -17,11 +17,11 @@ Find out more about the project guidelines: [LMU StatProg2 - Group Project Guide
 ## Dataset
 
 - **Source:**
-[Source](https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv)
+[Impact of AI on Students](https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv)
 - **Licence:**
 [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)
 - **Description:**
-The synthetic dataset "Impact of Ai on Students" is about the generative AI usage of students and its effects on them.
+The synthetic dataset "Impact of AI on Students" is about the generative AI usage of students and its effects on them.
 It features 50000 simulated students with 16 features.
 They capture various key information of the students (e.g. their major, study year & GPA score),
 but also how they use generative AI (e.g. which tools they use, which usecase they have & their prompting skills).
