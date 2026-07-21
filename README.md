@@ -9,6 +9,8 @@ and its workflows.
 
 Find out more about the project guidelines: [LMU StatProg2 - Group Project Guidelines](https://soda-lmu.github.io/StatProg2-2026-SoSe/group-project-guidelines.html)
 
+Also check out this project's [website.](https://voidnoverges.github.io/stat-prog-2/)
+
 ## Research Questions
 
 1. In which majors is the GPA most affected by heavier AI Usage?
