@@ -4,3 +4,9 @@ author:
   - "Paul Gustav Hoffmann"
 date: today
 ---
+
+## Introduction
+
+Now that I have been working on anwsering the 2 research questions with statistical methods, 
+I'm ready to present you the final results of the analysis.
+
