@@ -12,17 +12,22 @@ I'm ready to present you the final results of the analysis.
 
 ## Question 1: In which majors is the GPA most affected by heavier AI Usage?*
 
+*Preparation*
+
+Before we can draw plots we need analyse the question. 
 This question consists of 3 dimensions:
 - 1.: The majors
 - 2.: The effect on the GPA
 - 3.: The heaviness of AI usage
 
+1.: The majors
+
 The first point is self-explanatory, but the other two need some thinkering. 
 
-*2.: The effect on the GPA*
+2.: The effect on the GPA
 
 To measure this we first need to define what the effect on the GPA is: 
-It is the change of the GPA over one semester. 
+The effect on the GPA is the change of the GPA over one semester. 
 
-As we already have the data on pre and post semester GPA the GPA change is calculated as followed:  
+As we already have the data on pre and post semester GPA, the GPA change is calculated as followed:  
 GPA_Change_Over_Semester = Post_Semester_GPA - Pre_Semester_GPA  
