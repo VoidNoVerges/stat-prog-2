@@ -38,7 +38,7 @@ print_progress_time <- function() {
    cat(sprintf("Progress: %.2f%% | Remaining time: %s\n", progress, time_string))
 }
 
-clean_predictions <- function(predictions) {
+collapse_df <- function(predictions) {
    get_mode <- function(x) {
       if (all(is.na(x))) {
          return(NA_character_)
@@ -67,7 +67,7 @@ calculate_df <- function(mc, ip, yos) {
       )
 
    # group_split is used for ordering the Pre_Semester_GPA values.
-   df <- bind_rows(lapply(group_split(combinations, Pre_Semester_GPA), clean_predictions))
+   df <- bind_rows(lapply(group_split(combinations, Pre_Semester_GPA), collapse_df))
 
    print_progress_time()
 
