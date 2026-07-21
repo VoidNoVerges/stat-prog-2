@@ -57,3 +57,19 @@ Now we can alos facet the data into the majors which gives us a third dimensions
 To avoid a convoluted 3D plot we instead use facetting to divide the majors into 2-dimensional plots.
 
 ![Plot 2: GPA change over AI usage by majors](docs/eda_files/ai_usage_gpa_change_by_majors.png)
+
+*Discussion*
+
+These plots indicate following trend equally for all majors:  
+
+If the generative AI hours are less than half of the total study hours it doesn't 
+seem to have effect on the GPA change. However, around the 50% mark there is a small linear 
+decrease of the GPA change in favor of the traditional study hours.  
+
+These plots also show as a side effect that there are some people with heavy AI usage 
+who get an extraordinary worse GPA change than the rest. 
+Though the GPA change seems to be positive for all majors in general.  
+
+Now the question arrises if a student should even use AI in the first place. 
+The most sensible anwser would probably be: yes, but only to a certain degree. 
+This question will be part of the second question.
