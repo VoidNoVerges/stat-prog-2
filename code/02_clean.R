@@ -72,7 +72,7 @@ cleaned <- raw |>
   # Add/remove columns mentioned above.
   mutate(
     GPA_Change_Over_Semester =
-      (Pre_Semester_GPA - Post_Semester_GPA) |> round_3()
+      (Post_Semester_GPA - Pre_Semester_GPA) |> round_3()
   ) |>
   mutate(
     Percentage_Of_AI_Usage =
