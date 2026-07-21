@@ -51,12 +51,12 @@ We can map the heaviness of AI usage to the x-axis and the GPA change on the y-a
 Going through each student of the dataset and visualize them in this plot via a point 
 geom does the job. To better see the trend we can also use a smooth geom as this gives us a trend line.
 
-![Plot 1: GPA change over AI usage](docs/eda_files/ai_usage_gpa_change.png)
+![Plot 1: GPA change over AI usage](eda_files/ai_usage_gpa_change.png)
 
 Now we can also facet the data into the majors which gives us a third dimensions. 
 To avoid a convoluted 3D plot we instead use faceting to divide the majors into 2-dimensional plots.
 
-![Plot 2: GPA change over AI usage by majors](docs/eda_files/ai_usage_gpa_change_by_majors.png)
+![Plot 2: GPA change over AI usage by majors](eda_files/ai_usage_gpa_change_by_majors.png)
 
 *Discussion*
 
