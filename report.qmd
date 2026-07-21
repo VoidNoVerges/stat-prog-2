@@ -10,7 +10,7 @@ date: today
 Now that I have been working on anwsering the 2 research questions with statistical methods, 
 I'm ready to present you the final results of the analysis.
 
-## Question 1: In which majors is the GPA most affected by heavier AI Usage?*
+## Question 1: In which majors is the GPA most affected by heavier AI Usage?
 
 *Preparation*
 
@@ -53,8 +53,8 @@ geom does the job. To better see the trend we can also use a smooth geom as this
 
 ![Plot 1: GPA change over AI usage](docs/eda_files/ai_usage_gpa_change.png)
 
-Now we can alos facet the data into the majors which gives us a third dimensions. 
-To avoid a convoluted 3D plot we instead use facetting to divide the majors into 2-dimensional plots.
+Now we can also facet the data into the majors which gives us a third dimensions. 
+To avoid a convoluted 3D plot we instead use faceting to divide the majors into 2-dimensional plots.
 
 ![Plot 2: GPA change over AI usage by majors](docs/eda_files/ai_usage_gpa_change_by_majors.png)
 
