@@ -5,12 +5,13 @@ library(patchwork)
 source("code/04_analysis/model.R")
 
 
-
+# Define all model input parameters.
 major_categories <- c("STEM", "Medical", "Arts", "Business", "Humanities")
 years_of_study <- c("Junior", "Senior", "Graduate", "Sophomore", "Freshman")
 institutional_policies <- c("Strict_Ban", "Allowed_With_Citation", "Actively_Encouraged")
 gpa_vector <- seq(from = 1.0, to = 4.0, by = 0.1)
 
+# Initialize the progress & remaining time tracker.
 start_time <- Sys.time()
 current_iteration <- 0
 total_iterations <- length(major_categories) *
@@ -74,6 +75,7 @@ calculate_df <- function(mc, ip, yos) {
    df
 }
 
+# Build df of all possible model input combinations with their model suggestions.
 plot_data <- bind_rows(lapply(major_categories, function(mc) {
    bind_rows(lapply(institutional_policies, function(ip) {
       bind_rows(lapply(years_of_study, function(yos) {
@@ -82,6 +84,7 @@ plot_data <- bind_rows(lapply(major_categories, function(mc) {
    }))
 }))
 
+# Define the 6 main variables for the facetting.
 z_variables <- tribble(
    ~variable,                  ~label,                     ~type,
    "Weekly_Study_Hours",       "Weekly study hours",       "numeric",
