@@ -7,68 +7,66 @@ date: today
 
 ## Introduction
 
-Now that I have been working on anwsering the 2 research questions with statistical methods, 
-I'm ready to present you the final results of the analysis.
+Now that I have been working on anwsering the __2 research questions__ with statistical methods, 
+I'm ready to present you the __final results__ of the analysis.
 
 ## Question 1: In which majors is the GPA most affected by heavier AI Usage?
 
-*Preparation*
+### Preparation
 
-Before we can draw plots we need analyse the question. 
-This question consists of 3 dimensions:
-- 1.: The majors
-- 2.: The effect on the GPA
-- 3.: The heaviness of AI usage
+Before we can draw any plots, we need to analyze the question. It consists of three dimensions:
 
-1.: The majors
+1. The majors
+2. The effect on the GPA
+3. The heaviness of AI usage
 
-The first point is self-explanatory, but the other two need some thinkering. 
+#### 1. The majors
 
-2.: The effect on the GPA
+Given directly by the `Major_Category` column in the dataset.
 
-To measure this we first need to define what the effect on the GPA is: 
-The effect on the GPA is the change of the GPA over one semester. 
+#### 2. The effect on the GPA
 
-As we already have the data on pre and post semester GPA, the GPA change is calculated as followed:  
-GPA_Change_Over_Semester = Post_Semester_GPA - Pre_Semester_GPA  
+To measure this, we first need to define what "effect on the GPA" means: it is the change in GPA over one semester. Since we already have pre- and post-semester GPA, this is calculated as:
 
-3.: The heaviness of AI usage
+$$
+\text{GPA\_Change\_Over\_Semester} = \text{Post\_Semester\_GPA} - \text{Pre\_Semester\_GPA}
+$$
 
-We have many different columns in the dataset which could be used to model this question, 
-like the tool diversity or using a paid subsription, but I think following definition is enough:  
-The heaviness of AI usage is the precentage of time learning with the help of AI opposed to 
-the percentage of traditional study hours.
+#### 3. The heaviness of AI usage
 
-This can be calculated as followed:  
-Percentage_Of_AI_Usage = Weekly_GenAI_Hours / (Traditional_Study_Hours + Weekly_GenAI_Hours)
+The dataset has several columns that could be used to model this: e.g. the tool diversity or having a paid subscription. But the following definition is enough for our purposes: the heaviness of AI usage is the share of AI-assisted study time in the total study time (`Traditional_Study_Hours` & `Weekly_GenAI_Hours`):
 
-*Plotting*
+$$
+\text{Percentage\_Of\_AI\_Usage} = \frac{\text{Weekly\_GenAI\_Hours}}{\text{Traditional\_Study\_Hours} + \text{Weekly\_GenAI\_Hours}}
+$$
+
+### Plotting
 
 Now that we have all the data needed for anwsering the question we can plot it. 
-At first I am interested on the GPA affected by the heaviness of Ai usage without 
-looking at the majors to see the general trend.  
-We can map the heaviness of AI usage to the x-axis and the GPA change on the y-axis. 
-Going through each student of the dataset and visualize them in this plot via a point 
-geom does the job. To better see the trend we can also use a smooth geom as this gives us a trend line.
+At first I am interested in the `GPA_Change_Over_Semester` by the `Percentage_Of_AI_Usage` without 
+looking at the `Major_Category` to see the general trend first.  
+We can map the `Percentage_Of_AI_Usage` to the x-axis and the `GPA_Change_Over_Semester` on the y-axis. 
+Going through each student of the dataset and visualize them in this plot via a __point geom__ does the job. 
+To better see the trend we can also use a __smooth geom__ as this gives us a trend line.
 
 ![Plot 1: GPA change over AI usage](eda_files/ai_usage_gpa_change.png)
 
-Now we can also facet the data into the majors which gives us a third dimensions. 
-To avoid a convoluted 3D plot we instead use faceting to divide the majors into 2-dimensional plots.
+Now we can also facet the data into the `Major_Category` which gives us a __third dimension__. 
+To avoid a convoluted 3D plot we instead use __faceting__ to divide the majors into plots with __two dimensions__ again.  
 
 ![Plot 2: GPA change over AI usage by majors](eda_files/ai_usage_gpa_change_by_majors.png)
 
-*Discussion*
+### Discussion
 
-These plots indicate following trend equally for all majors:  
+These plots indicate following trend __equally for all majors__:  
 
-If the generative AI hours are less than half of the total study hours it doesn't 
-seem to have effect on the GPA change. However, around the 50% mark there is a small linear 
-decrease of the GPA change in favor of the traditional study hours.  
+If the `Percentage_Of_AI_Usage` is __less than half__ of the total study hours it __doesn't__
+seem to have __effect__ on the `GPA_Change_Over_Semester`. However, around the __50%__ mark there is a __small linear decrease__ 
+of the `GPA_Change_Over_Semester` in favor of the `Traditional_Study_Hours`.  
 
 These plots also show as a side effect that there are some people with heavy AI usage 
-who get an extraordinary worse GPA change than the rest. 
-Though the GPA change seems to be positive for all majors in general.  
+who get an __extraordinary worse GPA__ change than the rest. 
+Though the __GPA change__ seems to be __positive for all majors__ in general.  
 
 Now the question arrises if a student should even use AI in the first place. 
 The most sensible anwser would probably be: yes, but only to a certain degree. 
