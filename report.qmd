@@ -31,3 +31,13 @@ The effect on the GPA is the change of the GPA over one semester.
 
 As we already have the data on pre and post semester GPA, the GPA change is calculated as followed:  
 GPA_Change_Over_Semester = Post_Semester_GPA - Pre_Semester_GPA  
+
+3.: The heaviness of AI usage
+
+We have many different columns in the dataset which could be used to model this question, 
+like the tool diversity or using a paid subsription, but I think following definition is enough:  
+The heaviness of AI usage is the precentage of time learning with the help of AI opposed to 
+the percentage of traditional study hours.
+
+This can be calculated as followed:  
+Percentage_Of_AI_Usage = Weekly_GenAI_Hours / (Traditional_Study_Hours + Weekly_GenAI_Hours)
