@@ -19,6 +19,6 @@ I used the following AI tools in this project:
 |------|---------|-------|
 |Gemini| General explanations including error messages/debugging/needed R functions for problems| Global |
 |Claude| General explanations including error messages/debugging/needed R functions for problems| Global |
-|Gemini| Explain machine learning in R | 04_analysis.R |
-|Claude| Code generation (only implementation, not idea) | 04_analysis.R: clean_predictions function & building plot from plot_data |
+|Gemini| Explain machine learning in R | 04_analysis/model.R |
+|Claude| Code generation (only implementation, not idea) | 04_analysis/model_visualization.R: clean_predictions function & building plot from plot_data |
 |Claude| Formatting code/suggesting variable names for code readability | Global |
