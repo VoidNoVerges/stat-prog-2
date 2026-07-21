@@ -10,3 +10,11 @@ date: today
 Now that I have been working on anwsering the 2 research questions with statistical methods, 
 I'm ready to present you the final results of the analysis.
 
+## Question 1: In which majors is the GPA most affected by heavier AI Usage?*
+
+This question consists of 3 dimensions:
+- 1.: The majors
+- 2.: The effect on the GPA
+- 3.: The heaviness of AI usage
+
+The first point is self-explanatory, but the other two need some thinkering. 
