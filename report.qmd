@@ -271,3 +271,18 @@ calculate_df <- function(mc, ip, yos) {
   bind_rows(lapply(group_split(combinations, Pre_Semester_GPA), collapse_df))
 }
 ```
+
+`build_combinations` just builds the combinations like before and enables variable input parameters and takes a slice to reduce the table size:
+
+```{r, eval=FALSE}
+build_combinations <- function(pre_semester_gpa, major_category, year_of_study, institutional_policy, samples) {
+   hypothesis_grid |>
+      slice_sample(n = samples) |>
+      mutate(
+        Pre_Semester_GPA     = pre_semester_gpa,
+        Major_Category       = major_category,
+        Year_of_Study        = year_of_study,
+        Institutional_Policy = institutional_policy
+      )
+}
+```
