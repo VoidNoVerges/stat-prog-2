@@ -36,13 +36,15 @@ library(bonsai)
 library(lightgbm)
 
 
-
-build_model_fit <- function() {
+get_dataset <- function() {
    data <- read_csv(here("data", "processed", "data_clean.csv")) |>
       select(-c(
          Student_ID, Perceived_AI_Dependency, Anxiety_Level_During_Exams,
          Skill_Retention_Score, Burnout_Risk_Level, GPA_Change_Over_Semester
       ))
+}
+
+build_model_fit <- function(data) {
 
    recipe <- recipe(Post_Semester_GPA ~ ., data = data) |>
       step_mutate_at(all_logical_predictors(), fn = as.numeric) |>
@@ -60,7 +62,7 @@ build_model_fit <- function() {
       fit(data = data)
 }
 
-model_fit <- build_model_fit()
+model_fit <- build_model_fit(get_dataset())
 
 hypothesis_space <- list(
    Weekly_Study_Hours = seq(1, 40, by = 1),
