@@ -71,3 +71,17 @@ Though the __GPA change__ seems to be __positive for all majors__ in general.
 Now the question arrises if a student should even use AI in the first place. 
 The most sensible anwser would probably be: yes, but only to a certain degree. 
 This question will be part of the second question.
+
+## Question 2: How can AI be used for the best GPA score?
+
+### Preparation
+
+The anwser on how to use AI for the best GPA score is a difficult on to anwser. 
+First it is dependant of the students current situation, second there are many different 
+parameters on how AI can be used. To find all correlations and do some half backed conclusions 
+is not enough.  
+So the idea is to train a __model__ which takes these input parameters and gives the suggestions as 
+output parameters including the decision variable which is the `Post_Semester_GPA`. 
+The `Pre_Semester_GPA` on the other hand will be an input parameter.  
+To anwser the question we then try __all possible combinations of input parameters with their predictions__ 
+and plot them into a deep faceted plot analyzing the trends.
