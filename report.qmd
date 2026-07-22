@@ -7,7 +7,7 @@ date: today
 
 ## Introduction
 
-Now that I have been working on anwsering the __2 research questions__ with statistical methods, 
+Now that I have been working on answering the __2 research questions__ with statistical methods, 
 I'm ready to present you the __final results__ of the analysis.
 
 ## Question 1: In which majors is the GPA most affected by heavier AI Usage?
@@ -42,11 +42,11 @@ $$
 
 ### Plotting
 
-Now that we have all the data needed for anwsering the question we can plot it. 
+Now that we have all the data needed for answering the question we can plot it. 
 At first I am interested in the `GPA_Change_Over_Semester` by the `Percentage_Of_AI_Usage` without 
 looking at the `Major_Category` to see the general trend first.  
 We can map the `Percentage_Of_AI_Usage` to the x-axis and the `GPA_Change_Over_Semester` on the y-axis. 
-Going through each student of the dataset and visualize them in this plot via a __point geom__ does the job. 
+Going through each student of the dataset and visualizing them in this plot via a __point geom__ does the job. 
 To better see the trend we can also use a __smooth geom__ as this gives us a trend line.
 
 ![Plot 1: GPA change over AI usage](eda_files/ai_usage_gpa_change.png)
@@ -58,42 +58,42 @@ To avoid a convoluted 3D plot we instead use __faceting__ to divide the majors i
 
 ### Discussion
 
-These plots indicate following trend __equally for all majors__:  
+These plots indicate the following trend __equally for all majors__:  
 
 If the `Percentage_Of_AI_Usage` is __less than half__ of the total study hours it __doesn't__
-seem to have __effect__ on the `GPA_Change_Over_Semester`. However, around the __50%__ mark there is a __small linear decrease__ 
+seem to have an effect on the `GPA_Change_Over_Semester`. However, around the __50%__ mark there is a __small linear decrease__ 
 of the `GPA_Change_Over_Semester` in favor of the `Traditional_Study_Hours`.  
 
 These plots also show as a side effect that there are some people with heavy AI usage 
-who get an __extraordinary worse GPA__ change than the rest. 
+who get an __extraordinarily worse__ GPA change than the rest. 
 Though the __GPA change__ seems to be __positive for all majors__ in general.  
 
-Now the question arrises if a student should even use AI in the first place. 
-The most sensible anwser would probably be: yes, but only to a certain degree. 
+Now the question arises if a student should even use AI in the first place. 
+The most sensible answer would probably be: yes, but only to a certain degree. 
 This question will be part of the second question.
 
 ## Question 2: How can AI be used for the best GPA score?
 
 ### Preparation
 
-The anwser on how to use AI for the best GPA score is a difficult on to anwser. 
-First it is dependant of the students current situation, second there are many different 
-parameters on how AI can be used. To find all correlations and do some half backed conclusions 
+The answer on how to use AI for the best GPA score is a difficult one to answer. 
+First, it is dependent on the student's current situation; second, there are many different 
+parameters on how AI can be used. To find all correlations and do some half-baked conclusions 
 is not enough.  
 So the idea is to train a __model__ which takes these input parameters and gives the suggestions as 
 output parameters including the decision variable which is the `Post_Semester_GPA`. 
-The `Pre_Semester_GPA` on the other hand will be an input parameter.  
-To anwser the question we then try __all possible combinations of input parameters with their predictions__ 
+The `Pre_Semester_GPA`, on the other hand, will be an input parameter.  
+To answer the question we then try __all possible combinations of input parameters with their predictions__ 
 and plot them into a deep faceted plot analyzing the trends.
 
 ### The model
 
 #### The variables
 
-First we need to define the context variables (input parameters on the student's situation including his `Pre_Semester_GPA`), 
+First we need to define the context variables (input parameters on the student's situation including their `Pre_Semester_GPA`), 
 the decision variables on how to use generative AI for the best `Post_Semester_GPA`, which is the target variable.  
 There will be some unused variables, as they are questionable in their relationship to the context/decision variables 
-and make the facetting with all combinations hard to present and too difficult to compute. 
+and make the faceting with all combinations hard to present and too difficult to compute. 
 The `Student_ID` variable also holds no valuable information and will be dropped.
 
 Dropped variables:  
@@ -229,7 +229,7 @@ now need to draw the plot featuring all input combinations.
 
 ### Visualizing all model combinations
 
-#### Extend hypthesis space
+#### Extend hypothesis space
 
 First we need to define all possible input parameters for the model to test:
 
@@ -242,7 +242,7 @@ gpa_vector <- seq(from = 1.0, to = 4.0, by = 0.1)
 
 #### Calculate the plot data
 
-To get the plot data, we need following loop:
+To get the plot data, we need the following loop:
 
 ```{r, eval=FALSE}
 plot_data <- bind_rows(lapply(major_categories, function(mc) {
@@ -254,7 +254,7 @@ plot_data <- bind_rows(lapply(major_categories, function(mc) {
 }))
 ```
 
-`calculate_df` is defined as followed:
+`calculate_df` is defined as follows:
 
 ```{r, eval=FALSE}
 calculate_df <- function(mc, ip, yos) {
@@ -314,11 +314,11 @@ collapse_df <- function(predictions) {
 We make `Major_Category`, `Year_of_Study` and the `Institutional_Policy` facets for the plot yielding 75 plots. 
 The x-axis is the `Pre_Semester_GPA` and the y-axis the `Post_Semester_GPA` (predictions).  
 
-This is the layout for the plot. On the layout we now want to map the suggesting as a third dimension to each 
-plot as faceting is to convoluted already on this scale. The third dimension however is visualized by a color scale making it readable.  
+This is the layout for the plot. On the layout we now want to map the suggestion as a third dimension to each 
+plot as faceting is too convoluted already on this scale. The third dimension, however, is visualized by a color scale making it readable.  
 
 As there are __six suggestion types__ we need to facet the plot further on the top level. 
-This results into 450 individual plots:
+This results in 450 individual plots:
 
 ![Model analysis](analysis_files/model_analysis.png)
 
@@ -328,29 +328,29 @@ Looking at the plot there are some things that can be said right away:
 The __input parameters__ `Major_Category`, `Year_of_Study`, `Institutional_Policy`, `Pre_Semester_GPA`, 
 and the target variable `Post_Semester_GPA` __don't matter__ for the suggestion, 
 as every plot within the six suggestions looks the same. 
-In conclusion the __suggestions are independant__ of the student's situation given the 
+In conclusion the __suggestions are independent__ of the student's situation given the 
 input parameters.  
 
 Now that this is settled let's see what the uniform suggestions for AI usage are: 
 
 `Weekly_Study_Hours`:  
-This for sure is the most surprising result as there deosn't seem to be a straigt anwser:  
+This for sure is the most surprising result as there doesn't seem to be a straight answer:  
 We can see that less study hours are associated with a neutral GPA change. 
 High study hours are associated with both the best and the worst changes. 
 The conclusion I draw from this is that the study hours don't matter per se. 
 It's probably a case of "study smarter, not harder".
 
 `Percentage_Of_AI_Usage`:  
-You should use AI as less as possible or even more extreme not at all.
+You should use AI as little as possible, or even more extreme, not at all.
 
 `Tool_Diversity`:  
-It it pretty evenly distributed at around the 3 tools mark on average, 
+It is pretty evenly distributed at around the 3 tools mark on average, 
 but every color can be seen everywhere when looking closely. 
 This suggests that the tool diversity doesn't truly matter.
 
 `Primary_Use_Case`:  
-You should use AI for Copywriting/Debugging, but avoid it for direct anwser generation. 
-The other use cases don't give an as strong signal, but they are still positive or at least neutral.
+You should use AI for Copywriting/Debugging, but avoid it for direct answer generation. 
+The other use cases don't give as strong a signal, but they are still positive or at least neutral.
 
 `Paid_Subscription`:  
 The results are kinda all over the place, but you can see that a paid subscription 
@@ -359,14 +359,14 @@ but it doesn't matter that much.
 
 `Prompt_Engineering_Skill`:  
 Best is, when your prompt engineering skill is advanced, but all colors can be seen everywhere. 
-What I make from this, is that the prompt engineering skill does indeed help, 
+What I make from this is that the prompt engineering skill does indeed help, 
 but doesn't guarantee a better GPA.
 
 #### Result
 This is the general suggestion given the dataset and my model:   
-`Study smarter, not harder, while using AI as less as possible.`  
+`Study smarter, not harder, while using AI as little as possible.`  
 `But if you use it, ensure it's rather for arbitrary work like debugging and not for straight up solving your exercises.`  
-`You get the best results if you have a paid subscription and more important know how to write good prompts.`  
+`You get the best results if you have a paid subscription and more importantly know how to write good prompts.`  
 `Use as many different tools as you like.`  
 
 That the results are so uniform might be a result of the synthetic nature of the dataset 
@@ -376,5 +376,5 @@ and convey a consistent message without contradiction.
 ## Conclusion
 
 Given the synthetic nature of the dataset every plot only echoes what is modeled in the data. 
-Still, the results are reasonable and it was a great opportunity to get the hands on machine learning and statistical modelling. 
+Still the results are reasonable and it was a great opportunity to get my hands on machine learning and statistical modelling. 
 In short the final message is that AI should be used for a student to assist the learning process, not to replace it.
