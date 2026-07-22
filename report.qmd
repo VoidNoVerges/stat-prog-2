@@ -330,3 +330,34 @@ and the target variable `Post_Semester_GPA` __don't matter__ for the suggestion,
 as every plot within the six suggestions looks the same. 
 In conclusion the __suggestions are independant__ of the student's situation given the 
 input parameters.  
+
+Now that this is settled let's see what the uniform suggestions for AI usage are: 
+
+`Weekly_Study_Hours`:  
+This for sure is the most surprising result as there deosn't seem to be a straigt anwser:  
+We can see that less study hours are associated with a neutral GPA change. 
+High study hours are associated with both the best and the worst changes. 
+The conclusion I draw from this is that the study hours don't matter per se. 
+It's probably a case of "study smarter, not harder".
+
+`Percentage_Of_AI_Usage`:  
+You should use AI as less as possible or even more extreme not at all.
+
+`Tool_Diversity`:  
+It it pretty evenly distributed at around the 3 tools mark on average, 
+but every color can be seen everywhere when looking closely. 
+This suggests that the tool diversity doesn't truly matter.
+
+`Primary_Use_Case`:  
+You should use AI for Copywriting/Debugging, but avoid it for direct anwser generation. 
+The other use cases don't give an as strong signal, but they are still positive or at least neutral.
+
+`Paid_Subscription`:  
+The results are kinda all over the place, but you can see that a paid subscription 
+is associated with a more positive GPA change. So you should use a paid subscription, 
+but it doesn't matter that much.
+
+`Prompt_Engineering_Skill`:  
+Best is, when your prompt engineering skill is advanced, but all colors can be seen everywhere. 
+What I make from this, is that the prompt engineering skill does indeed help, 
+but doesn't guarantee a better GPA.
