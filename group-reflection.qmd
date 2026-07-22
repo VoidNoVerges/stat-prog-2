@@ -9,8 +9,7 @@ Git, Github (Issues, PRs), R, Python, Machine Learning Knowledge
 ### Functions & refactoring (W2)
 
 *What we did:*  
-A helper function and a big one featuring a regression model which gives recommendations, 
-given some input parameters about the student.
+Many different functions to handle complex calculations and making them easier to digest.
 
 *What worked well:*  
 Everything fine.
@@ -76,12 +75,12 @@ The initial data analysis went smoothly.
 Everthing that wasn't hard.
 
 *What was hard:*  
-Transforming the columns at first, but got it down after trying some times.
+Transforming the columns at first, but I got it down after trying some time.
 
 ### Reproducibility, open data & renv (W9)
 
 *What we did:*  
-Using the template from the REAME.md. 
+Using the template from the README.md. 
 The only thing I had to change was the download of the dataset. 
 I needed to integrate python code and added a small tutorial on how to set the python 
 runtime up.
@@ -96,15 +95,16 @@ with the second method.
 ### Analysis & inference strategies (W10)
 
 *What we did:*  
-Correlation plots, facetting for multiple plots and a regressing model for recommendations 
-on how a student should use AI for a better GPA.
+Correlation plots, faceting for multiple plots and a regressing model for recommendations 
+on how a student should use AI for a better GPA. Then I tried every possible input parameter 
+combination in the model to check for global patterns.
 
 *What worked well:*  
 The plots worked fine, especially the facetting.
 
 *What was hard:*  
 The model as I had no experience with implementing machine learning models before, 
-but it worked out after some trial and errors and drowning the AI with questions.
+but it worked out after some trial and errors and drowning the AI with questions. 
 
 ### Communication & visualisation (W11)
 
@@ -150,17 +150,11 @@ felt not right, so I settled with the other way.
 *In hindsight, would we decide differently?*  
 Nothing as it works fine and I think it was the best alternative.
 
-## Workflow & collaboration
-
-*How did we divide work across group members?*  
-I was the only member.
+## Workflow
 
 *What branching or Git workflow did we actually use — and did it match the proposal?*  
 I used many different features of git/github.
 I think it satisfied the proposal.
-
-*What would we change about how we coordinated?*  
--
 
 ## LLM usage
 
