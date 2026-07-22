@@ -36,14 +36,15 @@ library(bonsai)
 library(lightgbm)
 
 
-
-build_model_fit <- function() {
+get_dataset <- function() {
    data <- read_csv(here("data", "processed", "data_clean.csv")) |>
       select(-c(
          Student_ID, Perceived_AI_Dependency, Anxiety_Level_During_Exams,
          Skill_Retention_Score, Burnout_Risk_Level, GPA_Change_Over_Semester
       ))
+}
 
+build_model_fit <- function(data) {
    recipe <- recipe(Post_Semester_GPA ~ ., data = data) |>
       step_mutate_at(all_logical_predictors(), fn = as.numeric) |>
       step_novel(all_nominal_predictors()) |>
@@ -60,7 +61,26 @@ build_model_fit <- function() {
       fit(data = data)
 }
 
-model_fit <- build_model_fit()
+validate_model_fit <- function() {
+   split <- initial_split(get_dataset(), prop = 0.8)
+   train_data <- training(split)
+   test_data  <- testing(split)
+
+   model_fit <- build_model_fit(train_data)
+
+   predictions <- test_data |>
+      mutate(.pred = predict(model_fit, new_data = test_data)$.pred)
+
+   model_metrics <- predictions |>
+      metrics(truth = Post_Semester_GPA, estimate = .pred)
+
+   baseline_metrics <- predictions |>
+      metrics(truth = Post_Semester_GPA, estimate = Pre_Semester_GPA)
+   
+   list(Model_Metrics=model_metrics, Baseline_Metrics=baseline_metrics)
+}
+
+model_fit <- build_model_fit(get_dataset())
 
 hypothesis_space <- list(
    Weekly_Study_Hours = seq(1, 40, by = 1),
@@ -113,5 +133,3 @@ give_recommendations <- function(built_combinations) {
          Predicted_Post_Semester_GPA
       )
 }
-
-print(check_feature_importance(model_fit))
