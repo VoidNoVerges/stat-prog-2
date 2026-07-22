@@ -372,3 +372,9 @@ This is the general suggestion given the dataset and my model:
 That the results are so uniform might be a result of the synthetic nature of the dataset 
 or an imperfect model we fitted. However, I think that these results are sensible in a way 
 and convey a consistent message without contradiction.
+
+## Conclusion
+
+Given the synthetic nature of the dataset every plot only echoes what is modeled in the data. 
+Still, the results are reasonable and it was a great opportunity to get the hands on machine learning and statistical modelling. 
+In short the final message is that AI should be used for a student to assist the learning process, not to replace it.
