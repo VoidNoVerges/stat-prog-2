@@ -45,7 +45,6 @@ get_dataset <- function() {
 }
 
 build_model_fit <- function(data) {
-
    recipe <- recipe(Post_Semester_GPA ~ ., data = data) |>
       step_mutate_at(all_logical_predictors(), fn = as.numeric) |>
       step_novel(all_nominal_predictors()) |>
