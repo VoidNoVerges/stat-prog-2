@@ -134,5 +134,3 @@ give_recommendations <- function(built_combinations) {
          Predicted_Post_Semester_GPA
       )
 }
-
-print(check_feature_importance(model_fit))
