@@ -361,3 +361,10 @@ but it doesn't matter that much.
 Best is, when your prompt engineering skill is advanced, but all colors can be seen everywhere. 
 What I make from this, is that the prompt engineering skill does indeed help, 
 but doesn't guarantee a better GPA.
+
+#### Result
+This is the general suggestion given the dataset and my model:   
+`Study smarter, not harder, while using AI as less as possible.`  
+`But if you use it, ensure it's rather for arbitrary work like debugging and not for straight up solving your exercises.`  
+`You get the best results if you have a paid subscription and more important know how to write good prompts.`  
+`Use as many different tools as you like.`  
