@@ -204,7 +204,6 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#preparation-1" id="toc-preparation-1" class="nav-link" data-scroll-target="#preparation-1">Preparation</a></li>
   <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
-  <li><a href="#testing-the-model" id="toc-testing-the-model" class="nav-link" data-scroll-target="#testing-the-model">Testing the model</a></li>
   <li><a href="#visualizing-all-model-combinations" id="toc-visualizing-all-model-combinations" class="nav-link" data-scroll-target="#visualizing-all-model-combinations">Visualizing all model combinations</a></li>
   <li><a href="#discussion-1" id="toc-discussion-1" class="nav-link" data-scroll-target="#discussion-1">Discussion</a></li>
   </ul></li>
@@ -387,9 +386,8 @@ There will be some unused variables, as they are questionable in their relations
 </details>
 </div>
 </section>
-</section>
-<section id="testing-the-model" class="level3">
-<h3 class="anchored" data-anchor-id="testing-the-model">Testing the model</h3>
+<section id="testing-the-model" class="level4">
+<h4 class="anchored" data-anchor-id="testing-the-model">Testing the model</h4>
 <p>To test the quality of the model we simulate the creation of the model under a test-train-split. The idea is as follows: If the model trained under the train data predicts the test data notably better than an arbitrary <code>Pre_Semester_GPA</code> = <code>Post_Semester_GPA</code> prediction (the baseline), then the model has proven its quality. I chose an 80%-train-data &amp; 20%-test-data split which is quite conventional.</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -416,20 +414,21 @@ There will be some unused variables, as they are questionable in their relations
 # A tibble: 3 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 rmse    standard       0.145
-2 rsq     standard       0.912
-3 mae     standard       0.114
+1 rmse    standard       0.147
+2 rsq     standard       0.914
+3 mae     standard       0.115
 
 $Baseline_Metrics
 # A tibble: 3 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 rmse    standard       0.276
-2 rsq     standard       0.858
+1 rmse    standard       0.277
+2 rsq     standard       0.861
 3 mae     standard       0.231</code></pre>
 </div>
 </div>
 <p>As we can see, the model shows a lesser loss both with the RMSE and the MAE metrics. Also the RSQ is closer to 1. In a nutshell: This model seems to perform good.</p>
+</section>
 <section id="feature-importance" class="level4">
 <h4 class="anchored" data-anchor-id="feature-importance">Feature importance</h4>
 <p>It it interesting to see which of the features are important to the model. We can calculate the feature importance as follows:</p>
