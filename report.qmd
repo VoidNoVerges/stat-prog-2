@@ -166,7 +166,7 @@ dataset <- get_dataset()
 model_fit <- build_model_fit(dataset)
 ```
 
-### Testing the model
+#### Testing the model
 
 To test the quality of the model we simulate the creation of the model under a test-train-split. 
 The idea is as follows: If the model trained under the train data predicts the test data notably better than an
