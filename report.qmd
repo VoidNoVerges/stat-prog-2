@@ -85,3 +85,36 @@ output parameters including the decision variable which is the `Post_Semester_GP
 The `Pre_Semester_GPA` on the other hand will be an input parameter.  
 To anwser the question we then try __all possible combinations of input parameters with their predictions__ 
 and plot them into a deep faceted plot analyzing the trends.
+
+### The model
+
+#### The variables
+
+First we need to define the context variables (input parameters on the student's situation including his `Pre_Semester_GPA`), 
+the decision variables on how to use generative AI for the best `Post_Semester_GPA`, which is the target variable.  
+There will be some unused variables, as they are questionable in their relationship to the context/decision variables 
+and make the facetting with all combinations hard to present and too difficult to compute. 
+The `Student_ID` variable also holds no valuable information and will be dropped.
+
+Dropped variables:  
+`Perceived_AI_Dependency`  
+`Anxiety_Level_During_Exams`  
+`Skill_Retention_Score`  
+`Burnout_Risk_Level`  
+
+Context variables:  
+`Pre_Semester_GPA`  
+`Major_Category`  
+`Year_of_Study`  
+`Institutional_Policy`  
+
+Target variable:  
+`Post_Semester_GPA`  
+
+Decision variables:  
+`Weekly_Study_Hours`  
+`Percentage_Of_AI_Usage`  
+`Tool_Diversity`  
+`Primary_Use_Case`  
+`Paid_Subscription`  
+`Prompt_Engineering_Skill`  
