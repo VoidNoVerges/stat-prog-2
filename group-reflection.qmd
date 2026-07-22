@@ -4,7 +4,7 @@ title: "Group Reflection"
 
 ## Skills inventory
 
-Git, Github (Issues, PRs), R, Python, Machine Learning Knowledge 
+Git, GitHub (Issues, PRs), R, Python, Machine Learning Knowledge 
 
 ### Functions & refactoring (W2)
 
@@ -21,11 +21,11 @@ Nothing, but the syntax for functions in R feels awkward at times compared to ot
 
 *What we did:*  
 Following the error message instructions. If the message was unhelpful, the AI helped. 
-If the code runed fine, but results were unexpected, I tried different parameters till 
+If the code ran fine, but results were unexpected, I tried different parameters till 
 I found the problem. 
 
 *What worked well:*  
-Everthing worked alright most of the times.
+Everything worked alright most of the time.
 
 *What was hard:*  
 Errors resulting from mysterious function outputs/input requirements which are hard to debug.
@@ -33,19 +33,19 @@ Errors resulting from mysterious function outputs/input requirements which are h
 ### Version control & remotes (W4)
 
 *What we did:*  
-Using git, issues for every problem with their own branches and prs.
+Using Git, issues for every problem with their own branches and PRs.
 
 *What worked well:*  
 Keeping everything organized.
 
 *What was hard:*  
-Accidentaly pushing pr to the wrong branches was sometimes an issue or using 
+Accidentally pushing a PR to the wrong branch was sometimes an issue or using 
 the wrong source branch for a new branch. Basically mistakes that are easy to overlook.
 
 ### Quarto websites & collaborative coding (W5)
 
 *What we did:*  
-Enabeling the website and updating it from time to time by rendering new elements to docs.
+Enabling the website and updating it from time to time by rendering new elements to docs.
 
 *What worked well:*  
 Everything.
@@ -72,7 +72,7 @@ But I added some new columns which made other columns redundant which I deleted 
 The initial data analysis went smoothly.
 
 *What worked well:*  
-Everthing that wasn't hard.
+Everything that wasn't hard.
 
 *What was hard:*  
 Transforming the columns at first, but I got it down after trying some time.
@@ -82,29 +82,29 @@ Transforming the columns at first, but I got it down after trying some time.
 *What we did:*  
 Using the template from the README.md. 
 The only thing I had to change was the download of the dataset. 
-I needed to integrate python code and added a small tutorial on how to set the python 
+I needed to integrate Python code and added a small tutorial on how to set the Python 
 runtime up.
 
 *What worked well:*  
 Everything, as the reproducibility is already in the code.
 
 *What was hard:*  
-Trying to find a way to use here instead of the python method at first, but I settled 
+Trying to find a way to use here instead of the Python method at first, but I settled 
 with the second method.
 
 ### Analysis & inference strategies (W10)
 
 *What we did:*  
-Correlation plots, faceting for multiple plots and a regressing model for recommendations 
+Correlation plots, faceting for multiple plots and a regression model for recommendations 
 on how a student should use AI for a better GPA. Then I tried every possible input parameter 
 combination in the model to check for global patterns.
 
 *What worked well:*  
-The plots worked fine, especially the facetting.
+The plots worked fine, especially the faceting.
 
 *What was hard:*  
 The model as I had no experience with implementing machine learning models before, 
-but it worked out after some trial and errors and drowning the AI with questions. 
+but it worked out after some trial and error and drowning the AI with questions. 
 
 ### Communication & visualisation (W11)
 
@@ -112,10 +112,10 @@ but it worked out after some trial and errors and drowning the AI with questions
 Using multiple plots with easy to digest labeling and comments.
 
 *What worked well:*  
-Everthing was fine.
+Everything was fine.
 
 *What was hard:*  
-Sometimes I had difficulties formatting my outputs in the qmd as I have litte experience 
+Sometimes I had difficulties formatting my outputs in the qmd as I have little experience 
 with style formatting.
 
 ## Key analytical decisions
@@ -125,7 +125,7 @@ Describe 2–3 decisions that had a meaningful effect on your results or workflo
 ### Decision 1: Machine Learning vs Simple Correlation Plots
 
 *What were we deciding between?*  
-Using machine learning or just the easy quick was with some correlation plots to find out what kind of AI-Usage is recommended 
+Using machine learning or just the easy, quick way with some correlation plots to find out what kind of AI-Usage is recommended 
 for the best GPA-score. 
 
 *How did we reason through it?*  
@@ -139,13 +139,13 @@ Nothing really.
 ### Decision 2: Providing full download tutorial vs linking source 
 
 *What were we deciding between?*  
-If i should provide a full cross-language download way with a tutorial or just linking 
+If I should provide a full cross-language download way with a tutorial or just linking 
 to the source where many download alternatives were listed.
 
 *How did we reason through it?*  
 The download process is an important factor for reproducibility and even got a dedicated 
 file in the template. Just leaving it alone with a comment "look up the source: link" 
-felt not right, so I settled with the other way.
+didn't feel right, so I settled with the other way.
 
 *In hindsight, would we decide differently?*  
 Nothing as it works fine and I think it was the best alternative.
@@ -153,7 +153,7 @@ Nothing as it works fine and I think it was the best alternative.
 ## Workflow
 
 *What branching or Git workflow did we actually use — and did it match the proposal?*  
-I used many different features of git/github.
+I used many different features of Git/GitHub.
 I think it satisfied the proposal.
 
 ## LLM usage
@@ -174,6 +174,6 @@ Some explanations on machine learning were under false assumptions (e.g. linear 
 - **Tool / model:**  
 Gemini
 - **What it produced:**  
-Some example code how to build my model given the idea I had in the comment in 04_analysis. Had to thinker around with it for a while and tried different approaches. Eventually I got it to work and then changed it around to my needs.
+Some example code for how to build my model given the idea I had in the comment in 04_analysis. Had to tinker around with it for a while and tried different approaches. Eventually I got it to work and then changed it around to my needs.
 - **What we had to correct or verify:**  
 Often it didn't get the required packages right or sometimes the types of input parameters were incorrect in a function input.
