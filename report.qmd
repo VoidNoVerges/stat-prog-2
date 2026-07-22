@@ -158,6 +158,26 @@ model_fit <- workflow() |>
   fit(data = data)
 ```
 
+#### Feature importance
+
+It it interesting to see which of the features are important to the model. 
+We can calculate the feature importance as follows:
+
+```{r}
+booster <- extract_fit_engine(model_fit)
+
+as_tibble(lgb.importance(booster, percentage = TRUE)) |>
+  arrange(desc(Gain))
+```
+
+We can see that the `Pre_Semester_GPA` is the most important variable by a far margin. 
+Other variables with some relevancy are the `Weekly_Study_Hours`, `Primary_Use_Case`, 
+`Percentage_Of_AI_Usage` and the `Year_of_Study`. The other variables seem to be noise. 
+Note that the feature importance indicates which variables are important for a better GPA. 
+So we can already be quite certain that the `Prompt_Engineering_Skill`, `Institutional_Policy`, 
+`Paid_Subscription`, `Major_Category` and `Tool_Diversity` won't be important variables for 
+finding the answer on what is best for the GPA.
+
 #### Using the model
 
 First we need to define a student to use the model:
