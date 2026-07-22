@@ -420,12 +420,12 @@ but doesn't guarantee a better GPA. From the feature importance table it is also
 that this variable isn't that important.
 
 #### Result
-This is the general suggestion given the dataset and my model:   
+This is the general suggestion given the dataset and my model using the variables with a clear signal and feature importance to the model:   
 `Study smarter, not harder, while using AI as little as possible.`  
 `But if you use it, ensure it's rather for arbitrary work like debugging and not for straight up solving your exercises.`  
 
 That the results are so uniform might be a result of the synthetic nature of the dataset 
-or an imperfect model we fitted. However, I think that these results are sensible in a way 
+or by chance some optimizations in the calculation (`collapse_df` and `slice_sample`). However, I think that these results are sensible in a way 
 and convey a consistent message without contradiction.
 
 ## Conclusion

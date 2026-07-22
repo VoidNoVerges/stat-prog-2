@@ -108,6 +108,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -207,13 +236,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="dataset" class="level2">
 <h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
-<p>The synthetic dataset is called <a href="https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv">“Impact of Ai on Students”</a> and is created by laveshjadon.<br>
-It is licenced under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</a>.</p>
+<p>The synthetic dataset is called <a href="https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv">“Impact of Ai on Students”</a> and is created by <a href="https://www.kaggle.com/laveshjadon">laveshjadon</a>.<br>
+It is licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</a>.</p>
 <p><em>Content:</em><br>
 The synthetic dataset “Impact of Ai on Students” is about the generative AI usage of students and its effects on them. There are 50000 rows representing 50000 simulated students. Also, 16 simulated features are listed in their 16 columns. They capture various key information of the students (e.g., their major, study year &amp; GPA score), but also how they use generative AI (e.g., which tools they use, which use case they have &amp; their prompting skills).</p>
 <p><em>Where does the data come from?</em><br>
-The data is synthetically generated as stated in the provenance tab of the source.<br>
-However, I reason that the data is sensibly created and is suitable for further research for the following reasons:<br>
+The data is <strong>synthetically generated</strong> as stated in the provenance tab of the source.<br>
+However, I reason that the data is <strong>sensibly created</strong> and is suitable for further research for the following reasons:<br>
 - Good documentation (namely the creation process)<br>
 - Vastly exposed to the public in the form of downloads, discussions, or notebooks<br>
 - The creator has a comprehensive track record on Kaggle</p>
@@ -222,7 +251,7 @@ However, I reason that the data is sensibly created and is suitable for further 
 <h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
 <p><em>1. In which majors is the GPA most affected by heavier AI Usage?</em><br>
 <em>2. How can AI be used for the best GPA score?</em></p>
-<p>The audience for this analysis is students who want to understand how good AI is and normal to use in their field for a better grade. The overall message is more important than the details for this scenario. So simple visualizations like graphs without clutter should work best.</p>
+<p>The audience for this analysis is students who want to understand how they can use AI for improving their grade and where they should avoid using it. The overall message is more important than the details for this scenario. So simple visualizations like graphs without clutter should work best.</p>
 </section>
 <section id="initial-eda" class="level2">
 <h2 class="anchored" data-anchor-id="initial-eda">Initial EDA</h2>
@@ -302,9 +331,7 @@ $ Burnout_Risk_Level         &lt;chr&gt; "High", "Low", "Medium", "Medium", "Med
  Max.   :100.00                          </code></pre>
 </div>
 </div>
-<p><em>Issues with the dataset?</em><br>
-The dataset is pretty clean as it has no missing values or weird formatting. Overall, there are <em>no</em> issues with the values in the dataset.</p>
-<p>Now that we know more about the dataset, let’s do some EDA:</p>
+<p>The dataset is pretty clean as it has no missing values or weird formatting. Now that we know more about the dataset, let’s do some EDA:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -318,7 +345,7 @@ The dataset is pretty clean as it has no missing values or weird formatting. Ove
 </div>
 </div>
 </div>
-<p>Interestingly, the tool diversity doesn’t seem to be affected by the student using a paid subscription or not.</p>
+<p>Interestingly, the <code>Tool_Diversity</code> doesn’t seem to be affected by the student using a <code>Paid_Subscription</code> or not.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -332,11 +359,13 @@ The dataset is pretty clean as it has no missing values or weird formatting. Ove
 </div>
 </div>
 </div>
-<p>Students in the business sector seem to use AI the most for studying, while people who use it the least are in the field of humanities.</p>
-<p>But this doesn’t consider the traditional learning hours at all. So we might have a bias if there are differences in the total learning hours between the majors.<br>
+<p>Students in the <strong>business</strong> sector seem to have the <strong>most</strong> <code>Weekly_GenAI_Hours</code>, while people who use it the <strong>least</strong> are in the field of <strong>humanities</strong>.</p>
+<p>But this doesn’t consider the <code>Traditional_Study_Hours</code> hours at all. So we might have a bias if there are differences in the total learning hours between each <code>Major_Category</code>.<br>
 E.g., students of one major might use generative AI for fewer hours than others, while also learning way less in general. This would result in them using generative AI more than other majors when they learn, while the opposite is shown in the plot.</p>
-<p>We can resolve this by looking at the percentage of AI used for learning instead:<br>
-y = Weekly_GenAI_Hours / (Weekly_GenAI_Hours + Traditional_Study_Hours)</p>
+<p>We can resolve this by looking at the percentage of AI used for learning instead:</p>
+<p><span class="math display">\[
+\text{Percentage\_Of\_AI\_Usage} = \frac{\text{Weekly\_GenAI\_Hours}}{\text{Traditional\_Study\_Hours} + \text{Weekly\_GenAI\_Hours}}
+\]</span></p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -355,12 +384,12 @@ y = Weekly_GenAI_Hours / (Weekly_GenAI_Hours + Traditional_Study_Hours)</p>
 </div>
 </div>
 </div>
-<p>Luckily we can see that nothing truely changes, when also considering the traditional study hours.</p>
+<p>Luckily we can see that <strong>nothing truly changes</strong>, when also considering the <code>Traditional_Study_Hours</code>.</p>
 </section>
 <section id="analysis-plan" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h2>
 <p>The most important variables I am going to use are the pre and post semester GPA, as for both questions we need to measure the students’ performance affected by AI.</p>
-<p>For question 1, we also need the weekly generative AI study hours and the traditional study hours to measure how heavy the students’ AI usage is in percentages. To compare the majors in the first place, we need the accordingly called column. As we have 3 dimensions now, faceting between the majors is the way to avoid clutter.</p>
+<p>For question 1, we also need the weekly generative AI study hours and the traditional study hours to measure how heavy the students’ AI usage is in percentages. To compare the majors in the first place, we need the accordingly called column. As we have 3 dimensions now, faceting by the majors is the way to avoid clutter.</p>
 <p>For question 2, the idea is to create a model which can predict how students should use AI to improve the GPA score, given some information about the student. This will surely use most columns of the dataset.</p>
 
 
