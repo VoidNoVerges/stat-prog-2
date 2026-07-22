@@ -172,8 +172,9 @@ Some explanations on machine learning were under false assumptions (e.g. linear 
 ### Usage 2: Code generation
 
 - **Tool / model:**  
-Gemini
+Gemini/Claude
 - **What it produced:**  
-Some example code for how to build my model given the idea I had in the comment in 04_analysis. Had to tinker around with it for a while and tried different approaches. Eventually I got it to work and then changed it around to my needs.
+Some example code for how to build my model given the idea I had in the comment in 04_analysis. Had to tinker around with it for a while and tried different approaches. Eventually I got it to work and then changed it around to my needs. 
+Also it heavely helped me with the visualization of the plot_data used to show the predictions of the model for all input parameters.
 - **What we had to correct or verify:**  
 Often it didn't get the required packages right or sometimes the types of input parameters were incorrect in a function input.
