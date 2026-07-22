@@ -54,10 +54,7 @@ glimpse(data)
 summary(data)
 ```
 
-*Issues with the dataset?*  
-The dataset is pretty clean as it has no missing values or weird formatting.
-Overall, there are _no_ issues with the values in the dataset.  
-
+The dataset is pretty clean as it has no missing values or weird formatting. 
 Now that we know more about the dataset, let's do some EDA:
 
 ```{r}
