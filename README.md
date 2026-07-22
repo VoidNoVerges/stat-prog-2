@@ -1,10 +1,10 @@
 # StatProg2 - A statistical programming exercise on student AI behaviour
 
-This project revolves around understanding how students use AI and should use it for
+This project revolves around understanding how students should use AI for
 a better grade.
-The dataset captures many different relations of traditional learning and learning
-with generative AI to the student's grades.
-My overarching goal however is to get a better insight on statistical programming
+The dataset captures many different insights into traditional learning vs learning
+with generative AI in relation to the student's grade.
+My overarching goal however is to get a better insight into statistical programming
 and its workflows.
 
 Find out more about the project guidelines: [LMU StatProg2 - Group Project Guidelines](https://soda-lmu.github.io/StatProg2-2026-SoSe/group-project-guidelines.html)
@@ -26,7 +26,7 @@ Also check out this project's [website.](https://voidnoverges.github.io/stat-pro
 The synthetic dataset "Impact of AI on Students" is about the generative AI usage of students and its effects on them.
 It features 50000 simulated students with 16 features.
 They capture various key information of the students (e.g. their major, study year & GPA score),
-but also how they use generative AI (e.g. which tools they use, which usecase they have & their prompting skills).
+but also how they use generative AI (e.g. which tools they use, which use case they have & their prompting skills).
 
 ## Group Members
 
