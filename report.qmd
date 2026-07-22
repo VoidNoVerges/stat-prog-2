@@ -319,3 +319,6 @@ plot as faceting is to convoluted already on this scale. The third dimension how
 
 As there are __six suggestion types__ we need to facet the plot further on the top level. 
 This results into 450 individual plots:
+
+![Model analysis](analysis_files/model_analysis.png)
+
