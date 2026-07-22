@@ -4,9 +4,10 @@
 
 <!-- Fill in after the project is complete. -->
 
-**[Paul Gustav Hoffmann]**
-- Code: everything
-- Github: everything
+**[Paul Gustav Hoffmann]** - [responsible for every part of this project]  
+- [Code: everything]  
+- [Github/Git: everything]  
+- [Website: everything]  
 
 ## AI Tool Disclosure
 
@@ -17,8 +18,8 @@ I used the following AI tools in this project:
 
 | Tool | Purpose | Scope |
 |------|---------|-------|
-|Gemini| General explanations including error messages/debugging/needed R functions for problems| Global |
-|Claude| General explanations including error messages/debugging/needed R functions for problems| Global |
-|Gemini| Explain machine learning in R | 04_analysis/model.R |
-|Claude| Code generation (only implementation, not idea) | 04_analysis/model_visualization.R: clean_predictions function & building plot from plot_data |
 |Claude| Formatting code/suggesting variable names for code readability | Global |
+|Claude| Formatting text and fixing typos| Global |
+|Gemini/Claude| General explanations including error messages/debugging/needed R functions for problems| Global |
+|Gemini| Explaining machine learning in R | 04_analysis/model.R |
+|Claude| Code generation (only implementation, not idea) | 04_analysis/model_visualization.R: collapse_df function & building plot from plot_data |
