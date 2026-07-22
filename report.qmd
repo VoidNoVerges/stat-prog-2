@@ -365,7 +365,7 @@ You should use AI as little as possible, or even more extreme, not at all.
 `Tool_Diversity`:  
 It is pretty evenly distributed at around the 3 tools mark on average, 
 but every color can be seen everywhere when looking closely. 
-This suggests that the tool diversity doesn't truly matter.
+This suggests that the tool diversity doesn't truly matter (this is also supported by the feature importance table).
 
 `Primary_Use_Case`:  
 You should use AI for Copywriting/Debugging, but avoid it for direct answer generation. 
@@ -374,12 +374,13 @@ The other use cases don't give as strong a signal, but they are still positive o
 `Paid_Subscription`:  
 The results are kinda all over the place, but you can see that a paid subscription 
 is associated with a more positive GPA change. So you should use a paid subscription, 
-but it doesn't matter that much.
+but it doesn't matter that much which is also shown in the feature importance table.
 
 `Prompt_Engineering_Skill`:  
 Best is, when your prompt engineering skill is advanced, but all colors can be seen everywhere. 
 What I make from this is that the prompt engineering skill does indeed help, 
-but doesn't guarantee a better GPA.
+but doesn't guarantee a better GPA. From the feature importance table it is also clear 
+that this variable isn't that important.
 
 #### Result
 This is the general suggestion given the dataset and my model:   
