@@ -253,3 +253,21 @@ plot_data <- bind_rows(lapply(major_categories, function(mc) {
   }))
 }))
 ```
+
+`calculate_df` is defined as followed:
+
+```{r, eval=FALSE}
+calculate_df <- function(mc, ip, yos) {
+  combinations <- bind_rows(lapply(gpa_vector, function(gpa) {
+    build_combinations(gpa, mc, yos, ip, 50000)
+  }))
+
+  combinations <- combinations |>
+    mutate(
+      Predicted_Post_Semester_GPA = round(predict(model_fit, new_data = combinations)$.pred, 2)
+    )
+
+  # group_split is used for ordering the Pre_Semester_GPA values.
+  bind_rows(lapply(group_split(combinations, Pre_Semester_GPA), collapse_df))
+}
+```
