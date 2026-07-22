@@ -226,3 +226,16 @@ print(best_results, n = Inf, width = Inf)
 I tried out many different combinations and the results were mostly the same.  
 To confirm this and to view the whole spectrum of good and bad suggestions we 
 now need to draw the plot featuring all input combinations.
+
+### Visualizing all model combinations
+
+#### Extend hypthesis space
+
+First we need to define all possible input parameters for the model to test:
+
+```{r, eval=FALSE}
+major_categories <- c("STEM", "Medical", "Arts", "Business", "Humanities")
+years_of_study <- c("Junior", "Senior", "Graduate", "Sophomore", "Freshman")
+institutional_policies <- c("Strict_Ban", "Allowed_With_Citation", "Actively_Encouraged")
+gpa_vector <- seq(from = 1.0, to = 4.0, by = 0.1)
+```
