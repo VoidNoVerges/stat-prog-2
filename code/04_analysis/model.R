@@ -62,6 +62,25 @@ build_model_fit <- function(data) {
       fit(data = data)
 }
 
+validate_model_fit <- function() {
+   split <- initial_split(get_dataset(), prop = 0.8)
+   train_data <- training(split)
+   test_data  <- testing(split)
+
+   model_fit <- build_model_fit(train_data)
+
+   predictions <- test_data |>
+      mutate(.pred = predict(model_fit, new_data = test_data)$.pred)
+
+   model_metrics <- predictions |>
+      metrics(truth = Post_Semester_GPA, estimate = .pred)
+
+   baseline_metrics <- predictions |>
+      metrics(truth = Post_Semester_GPA, estimate = Pre_Semester_GPA)
+   
+   list(Model_Metrics=model_metrics, Baseline_Metrics=baseline_metrics)
+}
+
 model_fit <- build_model_fit(get_dataset())
 
 hypothesis_space <- list(
