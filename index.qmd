@@ -32,6 +32,7 @@ when using it for more than half of the learn time and this is independent of th
 Some outlier suffer from this with an extraordinary worse GPA after the end of their current semester.  
 
 Secondly, we have created a model which is able to tell a student how they should use AI for their best GPA. 
+After trying out a train test split and analyzing the feature importance we were confident with the model's quality. 
 But by trying out every possible input parameter combination, we found out that 
 every suggestion is in fact pretty much independant of the input parameters (which describe the student's situation). 
 So given the dataset there is a single suggestion for every student coming from the variables which are not noise in the model:  
