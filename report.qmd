@@ -118,3 +118,43 @@ Decision variables:
 `Primary_Use_Case`  
 `Paid_Subscription`  
 `Prompt_Engineering_Skill`  
+
+#### Fitting the model
+
+Import the libraries:
+
+```{r}
+#| output: false
+library(here)
+library(tidyverse)
+library(tidymodels)
+library(bonsai)
+library(lightgbm)
+```
+
+Fit the model:
+
+```{r}
+#| output: false
+data <- read_csv(here("data", "processed", "data_clean.csv")) |>
+  select(-c(
+    Student_ID, Perceived_AI_Dependency, Anxiety_Level_During_Exams,
+    Skill_Retention_Score, Burnout_Risk_Level, GPA_Change_Over_Semester
+  ))
+
+recipe <- recipe(Post_Semester_GPA ~ ., data = data) |>
+  step_mutate_at(all_logical_predictors(), fn = as.numeric) |>
+  step_novel(all_nominal_predictors()) |>
+  step_unknown(all_nominal_predictors()) |>
+  step_integer(all_nominal_predictors())
+
+specification <- boost_tree() |>
+  set_engine("lightgbm") |>
+  set_mode("regression")
+
+model_fit <- workflow() |>
+  add_recipe(recipe) |>
+  add_model(specification) |>
+  fit(data = data)
+```
+
