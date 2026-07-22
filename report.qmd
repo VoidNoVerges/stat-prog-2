@@ -368,3 +368,7 @@ This is the general suggestion given the dataset and my model:
 `But if you use it, ensure it's rather for arbitrary work like debugging and not for straight up solving your exercises.`  
 `You get the best results if you have a paid subscription and more important know how to write good prompts.`  
 `Use as many different tools as you like.`  
+
+That the results are so uniform might be a result of the synthetic nature of the dataset 
+or an imperfect model we fitted. However, I think that these results are sensible in a way 
+and convey a consistent message without contradiction.
