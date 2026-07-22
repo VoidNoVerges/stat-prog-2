@@ -158,3 +158,71 @@ model_fit <- workflow() |>
   fit(data = data)
 ```
 
+#### Using the model
+
+First we need to define a student to use the model:
+
+```{r}
+#| output: false
+pre_semester_gpa <- 3.0
+major_category <- "STEM"
+year_of_study <- "Junior"
+institutional_policy <- "Allowed_With_Citation"
+```
+
+Second we want to build a table with all possible suggestion outputs:
+
+```{r}
+#| output: false
+hypothesis_space <- list(
+  Weekly_Study_Hours = seq(1, 40, by = 1),
+  Percentage_Of_AI_Usage = seq(0.0, 1.0, by = 0.01),
+  Tool_Diversity = 1:5,
+  Primary_Use_Case = c(
+    "Copywriting/Drafting", "Ideation", "Summarizing_Reading",
+    "Debugging/Troubleshooting", "Direct_Answer_Generation"
+  ),
+  Paid_Subscription = c(TRUE, FALSE),
+  Prompt_Engineering_Skill = c("Beginner", "Intermediate", "Advanced")
+)
+
+hypothesis_grid <- cross_df(hypothesis_space)
+```
+
+Then we combine our input with all possible suggestions:
+
+```{r}
+#| output: false
+built_combinations <- hypothesis_grid |>
+  mutate(
+    Pre_Semester_GPA     = pre_semester_gpa,
+    Major_Category       = major_category,
+    Year_of_Study        = year_of_study,
+    Institutional_Policy = institutional_policy
+  )
+```
+
+Now we can use the model to predict a score for each suggestion:
+
+```{r}
+#| output: false
+predicted_combinations <- built_combinations |>
+  mutate(
+    Predicted_Post_Semester_GPA = round(predict(model_fit, new_data = built_combinations)$.pred, 2)
+  )
+```
+
+The only thing needed now is printing the top results:
+
+```{r}
+best_results <- predicted_combinations |>
+  arrange(desc(Predicted_Post_Semester_GPA)) |>
+  slice_head(n = 10) |>
+  select(-c(Pre_Semester_GPA, Major_Category, Year_of_Study, Institutional_Policy))
+
+print(best_results, n = Inf, width = Inf)
+```
+
+I tried out many different combinations and the results were mostly the same.  
+To confirm this and to view the whole spectrum of good and bad suggestions we 
+now need to draw the plot featuring all input combinations.
