@@ -172,27 +172,27 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Our world has changed a lot since the rise of generative AI including our everyday life, economy and how we learn things. Questions arise how students are affected by these changes and how they can benefit most from generative AI for their academic success.</p>
-<p>To give insights into this matter we will try to anwser following questions given the synthetic dataset “Impact of Ai on Students” by laveshjadon:</p>
+<p>Our world has changed a lot since the rise of generative AI including our everyday life, economy and how we learn things. Questions arise about how students are affected by these changes and how they can benefit most from generative AI for their academic success.</p>
+<p>To give insights into this matter we will try to answer the following questions given the synthetic dataset “Impact of Ai on Students” by laveshjadon:</p>
 <p><em>1. In which majors is the GPA most affected by heavier AI Usage?</em><br>
 <em>2. How can AI be used for the best GPA score?</em></p>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>The synthetic dataset “Impact of Ai on Students” by laveshjadon is about the generative AI usage of students and its effects on them. It features 50000 simulated students with 16 features. They capture various key information of the students (e.g.&nbsp;their major, study year &amp; GPA score), but also how they use generative AI (e.g.&nbsp;which tools they use, which usecase they have &amp; their prompting skills).</p>
+<p>The synthetic dataset “Impact of Ai on Students” by laveshjadon is about the generative AI usage of students and its effects on them. It features 50000 simulated students with 16 features. They capture various key information of the students (e.g.&nbsp;their major, study year &amp; GPA score), but also how they use generative AI (e.g.&nbsp;which tools they use, which use case they have &amp; their prompting skills).</p>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
-<p>First, we observed that heavy AI usage seems to have a beneficial effect on the grade when using it for more than half of the learn time and this is independent of the majors.<br>
-Using it much and correctly gives some outliers even a huge boost to their grade which fortifies the need of the second question.</p>
-<p>Secondly, we have created a model which is able to tell a student how AI can be used best for them.</p>
+<p>First, we observed that heavy AI usage seems to have a damaging effect on the grade when using it for more than half of the learning time and this is independent of the majors. Some outliers suffer from this with an extraordinarily worse GPA after the end of their current semester.</p>
+<p>Secondly, we have created a model which is able to tell a student how they should use AI for their best GPA. After trying out a train test split and analyzing the feature importance we were confident with the model’s quality. But by trying out every possible input parameter combination, we found out that every suggestion is in fact pretty much independent of the input parameters (which describe the student’s situation). So given the dataset there is a single suggestion for every student coming from the variables which are not noise in the model:<br>
+<code>Study smarter, not harder, while using AI as little as possible.</code><br>
+<code>But if you use it, ensure it's rather for arbitrary work like debugging and not for straight up solving your exercises.</code></p>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <p>Given the dataset is synthetic, the observations and conclusions from this research might be statistically correct, but the dataset (even though realistic) is prone to have biases which might make these findings in fact incorrect. Caution is a must.</p>
-<p>Keep in mind that the first observation comes from the GPA change over one semester, so heavy AI usage might as well only be a short time gain or might even worsen the GPA in the long term. This data alone cannot anwser that.<br>
-But what one could certainly draw from this is that AI can help in a buisy semester.</p>
-<p>The model is bound to have some biases, given synthetic data cannot be a perfect representation of the real word, but I believe it can still give a good suggestion, when questioning the results and building on them. However, one major flaw is that the data doesn’t include long-term effects (only GPA change over one semester). The model cannot represent them accordingly which might be a dangerous restriction.</p>
+<p>Keep in mind that the first observation comes from the GPA change over one semester, so heavy AI usage might as well only be a short-term disadvantage or might even increase the GPA in the long term. This data alone cannot answer that.</p>
+<p>The model is bound to have some biases, given synthetic data cannot be a perfect representation of the real world, but I still believe the overall message of the analysis is sensible.</p>
 
 
 </section>
