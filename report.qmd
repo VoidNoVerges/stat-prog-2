@@ -308,3 +308,14 @@ collapse_df <- function(predictions) {
     )
 }
 ```
+
+#### Plotting
+
+We make `Major_Category`, `Year_of_Study` and the `Institutional_Policy` facets for the plot yielding 75 plots. 
+The x-axis is the `Pre_Semester_GPA` and the y-axis the `Post_Semester_GPA` (predictions).  
+
+This is the layout for the plot. On the layout we now want to map the suggesting as a third dimension to each 
+plot as faceting is to convoluted already on this scale. The third dimension however is visualized by a color scale making it readable.  
+
+As there are __six suggestion types__ we need to facet the plot further on the top level. 
+This results into 450 individual plots:
