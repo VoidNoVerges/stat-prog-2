@@ -9,7 +9,7 @@ date: today
 
 The synthetic dataset is called 
 ["Impact of Ai on Students"](https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv)
-and is created by laveshjadon.  
+and is created by [laveshjadon](https://www.kaggle.com/laveshjadon).  
 It is licensed under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
 
 *Content:*  
@@ -22,8 +22,8 @@ but also how they use generative AI
 (e.g., which tools they use, which use case they have & their prompting skills).
 
 *Where does the data come from?*  
-The data is synthetically generated as stated in the provenance tab of the source.  
-However, I reason that the data is sensibly created and is suitable for further research
+The data is __synthetically generated__ as stated in the provenance tab of the source.  
+However, I reason that the data is __sensibly created__ and is suitable for further research
 for the following reasons:  
 - Good documentation (namely the creation process)  
 - Vastly exposed to the public in the form of downloads, discussions, or notebooks  
@@ -34,7 +34,7 @@ for the following reasons:
 *1. In which majors is the GPA most affected by heavier AI Usage?*  
 *2. How can AI be used for the best GPA score?*
 
-The audience for this analysis is students who want to understand  how they can use AI for improving their grade and where they should avoid using it. 
+The audience for this analysis is students who want to understand how they can use AI for improving their grade and where they should avoid using it. 
 The overall message is more important than the details for this scenario. 
 So simple visualizations like graphs without clutter should work best.
 
@@ -61,24 +61,28 @@ Now that we know more about the dataset, let's do some EDA:
 ggplot(data, aes(x = Paid_Subscription, y = Tool_Diversity)) + geom_boxplot()
 ```
 
-Interestingly, the tool diversity doesn't seem to be affected by the student
-using a paid subscription or not.
+Interestingly, the `Tool_Diversity` doesn't seem to be affected by the student
+using a `Paid_Subscription` or not.
 
 ```{r}
 ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours)) + geom_boxplot()
 ```
 
-Students in the business sector seem to use AI the most for studying, while people who use it the
-least are in the field of humanities.  
+Students in the __business__ sector seem to have the __most__ `Weekly_GenAI_Hours`, while people who use it the
+__least__ are in the field of __humanities__.  
 
-But this doesn't consider the traditional learning hours at all. 
-So we might have a bias if there are differences in the total learning hours between the majors.  
+But this doesn't consider the `Traditional_Study_Hours` hours at all. 
+So we might have a bias if there are differences in the total learning hours between each `Major_Category`.  
 E.g., students of one major might use generative AI for fewer hours than others, 
 while also learning way less in general. This would result in them using generative AI 
 more than other majors when they learn, while the opposite is shown in the plot.  
 
 We can resolve this by looking at the percentage of AI used for learning instead:  
-y = Weekly_GenAI_Hours / (Weekly_GenAI_Hours + Traditional_Study_Hours)
+
+$$
+\text{Percentage\_Of\_AI\_Usage} = \frac{\text{Weekly\_GenAI\_Hours}}{\text{Traditional\_Study\_Hours} + \text{Weekly\_GenAI\_Hours}}
+$$
+
 ```{r}
 ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours / (Weekly_GenAI_Hours + Traditional_Study_Hours))) +
   geom_boxplot() +
@@ -88,7 +92,7 @@ ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours / (Weekly_GenAI_Hour
   )
 ```
 
-Luckily we can see that nothing truly changes, when also considering the traditional study hours.
+Luckily we can see that __nothing truly changes__, when also considering the `Traditional_Study_Hours`.
 
 ## Analysis Plan
 
