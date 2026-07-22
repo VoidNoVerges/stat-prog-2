@@ -374,70 +374,99 @@ There will be some unused variables, as they are questionable in their relations
 </details>
 </div>
 </section>
+<section id="feature-importance" class="level4">
+<h4 class="anchored" data-anchor-id="feature-importance">Feature importance</h4>
+<p>It it interesting to see which of the features are important to the model. We can calculate the feature importance as follows:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>booster <span class="ot">&lt;-</span> <span class="fu">extract_fit_engine</span>(model_fit)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(<span class="fu">lgb.importance</span>(booster, <span class="at">percentage =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Gain))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   Feature                      Gain   Cover Frequency
+   &lt;chr&gt;                       &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Pre_Semester_GPA         0.938    0.311      0.21  
+ 2 Weekly_Study_Hours       0.0188   0.202      0.246 
+ 3 Primary_Use_Case         0.0154   0.0636     0.115 
+ 4 Percentage_Of_AI_Usage   0.0133   0.155      0.205 
+ 5 Year_of_Study            0.00931  0.153      0.089 
+ 6 Prompt_Engineering_Skill 0.00378  0.0540     0.0463
+ 7 Institutional_Policy     0.000985 0.0288     0.03  
+ 8 Paid_Subscription        0.000568 0.0141     0.0203
+ 9 Major_Category           0.000137 0.0100     0.021 
+10 Tool_Diversity           0.000111 0.00864    0.0177</code></pre>
+</div>
+</div>
+<p>We can see that the <code>Pre_Semester_GPA</code> is the most important variable by a far margin. Other variables with some relevancy are the <code>Weekly_Study_Hours</code>, <code>Primary_Use_Case</code>, <code>Percentage_Of_AI_Usage</code> and the <code>Year_of_Study</code>. The other variables seem to be noise. The model also indicates which variables are important for a vetter GPA. So we can already be quite certain that the <code>Prompt_Engineering_Skill</code>, <code>Institutional_Policy</code>, <code>Paid_Subscription</code>, <code>Major_Category</code> and <code>Tool_Diversity</code> won’t be important variables for finding the answer on what is best for the GPA.</p>
+</section>
 <section id="using-the-model" class="level4">
 <h4 class="anchored" data-anchor-id="using-the-model">Using the model</h4>
 <p>First we need to define a student to use the model:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pre_semester_gpa <span class="ot">&lt;-</span> <span class="fl">3.0</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>major_category <span class="ot">&lt;-</span> <span class="st">"STEM"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>year_of_study <span class="ot">&lt;-</span> <span class="st">"Junior"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>institutional_policy <span class="ot">&lt;-</span> <span class="st">"Allowed_With_Citation"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pre_semester_gpa <span class="ot">&lt;-</span> <span class="fl">3.0</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>major_category <span class="ot">&lt;-</span> <span class="st">"STEM"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>year_of_study <span class="ot">&lt;-</span> <span class="st">"Junior"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>institutional_policy <span class="ot">&lt;-</span> <span class="st">"Allowed_With_Citation"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Second we want to build a table with all possible suggestion outputs:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hypothesis_space <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Weekly_Study_Hours =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">1</span>),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Percentage_Of_AI_Usage =</span> <span class="fu">seq</span>(<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="at">by =</span> <span class="fl">0.01</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Tool_Diversity =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Primary_Use_Case =</span> <span class="fu">c</span>(</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Copywriting/Drafting"</span>, <span class="st">"Ideation"</span>, <span class="st">"Summarizing_Reading"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Debugging/Troubleshooting"</span>, <span class="st">"Direct_Answer_Generation"</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Paid_Subscription =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Prompt_Engineering_Skill =</span> <span class="fu">c</span>(<span class="st">"Beginner"</span>, <span class="st">"Intermediate"</span>, <span class="st">"Advanced"</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>hypothesis_grid <span class="ot">&lt;-</span> <span class="fu">cross_df</span>(hypothesis_space)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hypothesis_space <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Weekly_Study_Hours =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">1</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Percentage_Of_AI_Usage =</span> <span class="fu">seq</span>(<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="at">by =</span> <span class="fl">0.01</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Tool_Diversity =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Primary_Use_Case =</span> <span class="fu">c</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Copywriting/Drafting"</span>, <span class="st">"Ideation"</span>, <span class="st">"Summarizing_Reading"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Debugging/Troubleshooting"</span>, <span class="st">"Direct_Answer_Generation"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Paid_Subscription =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Prompt_Engineering_Skill =</span> <span class="fu">c</span>(<span class="st">"Beginner"</span>, <span class="st">"Intermediate"</span>, <span class="st">"Advanced"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>hypothesis_grid <span class="ot">&lt;-</span> <span class="fu">cross_df</span>(hypothesis_space)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Then we combine our input with all possible suggestions:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>built_combinations <span class="ot">&lt;-</span> hypothesis_grid <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Pre_Semester_GPA     =</span> pre_semester_gpa,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Major_Category       =</span> major_category,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Year_of_Study        =</span> year_of_study,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Institutional_Policy =</span> institutional_policy</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>built_combinations <span class="ot">&lt;-</span> hypothesis_grid <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Pre_Semester_GPA     =</span> pre_semester_gpa,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Major_Category       =</span> major_category,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Year_of_Study        =</span> year_of_study,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Institutional_Policy =</span> institutional_policy</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Now we can use the model to predict a score for each suggestion:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>predicted_combinations <span class="ot">&lt;-</span> built_combinations <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Predicted_Post_Semester_GPA =</span> <span class="fu">round</span>(<span class="fu">predict</span>(model_fit, <span class="at">new_data =</span> built_combinations)<span class="sc">$</span>.pred, <span class="dv">2</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>predicted_combinations <span class="ot">&lt;-</span> built_combinations <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Predicted_Post_Semester_GPA =</span> <span class="fu">round</span>(<span class="fu">predict</span>(model_fit, <span class="at">new_data =</span> built_combinations)<span class="sc">$</span>.pred, <span class="dv">2</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The only thing needed now is printing the top results:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>best_results <span class="ot">&lt;-</span> predicted_combinations <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Predicted_Post_Semester_GPA)) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Pre_Semester_GPA, Major_Category, Year_of_Study, Institutional_Policy))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(best_results, <span class="at">n =</span> <span class="cn">Inf</span>, <span class="at">width =</span> <span class="cn">Inf</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>best_results <span class="ot">&lt;-</span> predicted_combinations <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Predicted_Post_Semester_GPA)) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Pre_Semester_GPA, Major_Category, Year_of_Study, Institutional_Policy))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(best_results, <span class="at">n =</span> <span class="cn">Inf</span>, <span class="at">width =</span> <span class="cn">Inf</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 7
@@ -491,10 +520,10 @@ To confirm this and to view the whole spectrum of good and bad suggestions we no
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>major_categories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"STEM"</span>, <span class="st">"Medical"</span>, <span class="st">"Arts"</span>, <span class="st">"Business"</span>, <span class="st">"Humanities"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>years_of_study <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Junior"</span>, <span class="st">"Senior"</span>, <span class="st">"Graduate"</span>, <span class="st">"Sophomore"</span>, <span class="st">"Freshman"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>institutional_policies <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Strict_Ban"</span>, <span class="st">"Allowed_With_Citation"</span>, <span class="st">"Actively_Encouraged"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>gpa_vector <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.0</span>, <span class="at">to =</span> <span class="fl">4.0</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>major_categories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"STEM"</span>, <span class="st">"Medical"</span>, <span class="st">"Arts"</span>, <span class="st">"Business"</span>, <span class="st">"Humanities"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>years_of_study <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Junior"</span>, <span class="st">"Senior"</span>, <span class="st">"Graduate"</span>, <span class="st">"Sophomore"</span>, <span class="st">"Freshman"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>institutional_policies <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Strict_Ban"</span>, <span class="st">"Allowed_With_Citation"</span>, <span class="st">"Actively_Encouraged"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>gpa_vector <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.0</span>, <span class="at">to =</span> <span class="fl">4.0</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -504,71 +533,71 @@ To confirm this and to view the whole spectrum of good and bad suggestions we no
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(major_categories, <span class="cf">function</span>(mc) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(institutional_policies, <span class="cf">function</span>(ip) {</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(years_of_study, <span class="cf">function</span>(yos) {</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">calculate_df</span>(mc, ip, yos)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    }))</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  }))</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(major_categories, <span class="cf">function</span>(mc) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(institutional_policies, <span class="cf">function</span>(ip) {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(years_of_study, <span class="cf">function</span>(yos) {</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">calculate_df</span>(mc, ip, yos)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    }))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>}))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><code>calculate_df</code> is defined as follows:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>calculate_df <span class="ot">&lt;-</span> <span class="cf">function</span>(mc, ip, yos) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  combinations <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(gpa_vector, <span class="cf">function</span>(gpa) {</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">build_combinations</span>(gpa, mc, yos, ip, <span class="dv">50000</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  }))</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  combinations <span class="ot">&lt;-</span> combinations <span class="sc">|&gt;</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">Predicted_Post_Semester_GPA =</span> <span class="fu">round</span>(<span class="fu">predict</span>(model_fit, <span class="at">new_data =</span> combinations)<span class="sc">$</span>.pred, <span class="dv">2</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># group_split is used for ordering the Pre_Semester_GPA values.</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(<span class="fu">group_split</span>(combinations, Pre_Semester_GPA), collapse_df))</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>calculate_df <span class="ot">&lt;-</span> <span class="cf">function</span>(mc, ip, yos) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  combinations <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(gpa_vector, <span class="cf">function</span>(gpa) {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">build_combinations</span>(gpa, mc, yos, ip, <span class="dv">50000</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  combinations <span class="ot">&lt;-</span> combinations <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">Predicted_Post_Semester_GPA =</span> <span class="fu">round</span>(<span class="fu">predict</span>(model_fit, <span class="at">new_data =</span> combinations)<span class="sc">$</span>.pred, <span class="dv">2</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># group_split is used for ordering the Pre_Semester_GPA values.</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(<span class="fu">group_split</span>(combinations, Pre_Semester_GPA), collapse_df))</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><code>build_combinations</code> just builds the combinations like before and enables variable input parameters and takes a slice to reduce the table size:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>build_combinations <span class="ot">&lt;-</span> <span class="cf">function</span>(pre_semester_gpa, major_category, year_of_study, institutional_policy, samples) {</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   hypothesis_grid <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">slice_sample</span>(<span class="at">n =</span> samples) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">Pre_Semester_GPA     =</span> pre_semester_gpa,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">Major_Category       =</span> major_category,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">Year_of_Study        =</span> year_of_study,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">Institutional_Policy =</span> institutional_policy</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>build_combinations <span class="ot">&lt;-</span> <span class="cf">function</span>(pre_semester_gpa, major_category, year_of_study, institutional_policy, samples) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>   hypothesis_grid <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">slice_sample</span>(<span class="at">n =</span> samples) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">Pre_Semester_GPA     =</span> pre_semester_gpa,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">Major_Category       =</span> major_category,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">Year_of_Study        =</span> year_of_study,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">Institutional_Policy =</span> institutional_policy</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><code>collapse_df</code> calculates the average for each GPA score prediction massively reducing the plot_data size to make the drawing of the plot even possible:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>collapse_df <span class="ot">&lt;-</span> <span class="cf">function</span>(predictions) {</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  get_mode <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(x))) {</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NA_character_</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    modes <span class="ot">&lt;-</span> <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"no"</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(modes)[<span class="fu">which.max</span>(modes)]</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  predictions <span class="sc">|&gt;</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Predicted_Post_Semester_GPA) <span class="sc">|&gt;</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">across</span>(<span class="fu">where</span>(is.character) <span class="sc">|</span> <span class="fu">where</span>(is.logical), get_mode),</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>collapse_df <span class="ot">&lt;-</span> <span class="cf">function</span>(predictions) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  get_mode <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(x))) {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NA_character_</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    modes <span class="ot">&lt;-</span> <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"no"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(modes)[<span class="fu">which.max</span>(modes)]</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  predictions <span class="sc">|&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Predicted_Post_Semester_GPA) <span class="sc">|&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">across</span>(<span class="fu">where</span>(is.character) <span class="sc">|</span> <span class="fu">where</span>(is.logical), get_mode),</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -596,20 +625,18 @@ We can see that less study hours are associated with a neutral GPA change. High 
 <p><code>Percentage_Of_AI_Usage</code>:<br>
 You should use AI as little as possible, or even more extreme, not at all.</p>
 <p><code>Tool_Diversity</code>:<br>
-It is pretty evenly distributed at around the 3 tools mark on average, but every color can be seen everywhere when looking closely. This suggests that the tool diversity doesn’t truly matter.</p>
+It is pretty evenly distributed at around the 3 tools mark on average, but every color can be seen everywhere when looking closely. This suggests that the tool diversity doesn’t truly matter (this is also supported by the feature importance table).</p>
 <p><code>Primary_Use_Case</code>:<br>
 You should use AI for Copywriting/Debugging, but avoid it for direct answer generation. The other use cases don’t give as strong a signal, but they are still positive or at least neutral.</p>
 <p><code>Paid_Subscription</code>:<br>
-The results are kinda all over the place, but you can see that a paid subscription is associated with a more positive GPA change. So you should use a paid subscription, but it doesn’t matter that much.</p>
+The results are kinda all over the place, but you can see that a paid subscription is associated with a more positive GPA change. So you should use a paid subscription, but it doesn’t matter that much which is also shown in the feature importance table.</p>
 <p><code>Prompt_Engineering_Skill</code>:<br>
-Best is, when your prompt engineering skill is advanced, but all colors can be seen everywhere. What I make from this is that the prompt engineering skill does indeed help, but doesn’t guarantee a better GPA.</p>
+Best is, when your prompt engineering skill is advanced, but all colors can be seen everywhere. What I make from this is that the prompt engineering skill does indeed help, but doesn’t guarantee a better GPA. From the feature importance table it is also clear that this variable isn’t that important.</p>
 <section id="result" class="level4">
 <h4 class="anchored" data-anchor-id="result">Result</h4>
 <p>This is the general suggestion given the dataset and my model:<br>
 <code>Study smarter, not harder, while using AI as little as possible.</code><br>
-<code>But if you use it, ensure it's rather for arbitrary work like debugging and not for straight up solving your exercises.</code><br>
-<code>You get the best results if you have a paid subscription and more importantly know how to write good prompts.</code><br>
-<code>Use as many different tools as you like.</code></p>
+<code>But if you use it, ensure it's rather for arbitrary work like debugging and not for straight up solving your exercises.</code></p>
 <p>That the results are so uniform might be a result of the synthetic nature of the dataset or an imperfect model we fitted. However, I think that these results are sensible in a way and convey a consistent message without contradiction.</p>
 </section>
 </section>
