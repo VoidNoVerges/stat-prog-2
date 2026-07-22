@@ -166,6 +166,34 @@ dataset <- get_dataset()
 model_fit <- build_model_fit(dataset)
 ```
 
+### Testing the model
+
+To test the quality of the model we simulate the creation of the model under a test-train-split. 
+The idea is as follows: If the model trained under the train data predicts the test data notably better than an
+arbitrary `Pre_Semester_GPA` = `Post_Semester_GPA` prediction (the baseline), then the model 
+has proven its quality. I chose an 80%-train-data & 20%-test-data split which is quite conventional.
+
+```{r}
+split <- initial_split(dataset, prop = 0.8)
+train_data <- training(split)
+test_data  <- testing(split)
+
+simulated_model_fit <- build_model_fit(train_data)
+
+predictions <- test_data |>
+  mutate(.pred = predict(simulated_model_fit, new_data = test_data)$.pred)
+
+model_metrics <- predictions |>
+  metrics(truth = Post_Semester_GPA, estimate = .pred)
+
+baseline_metrics <- predictions |>
+  metrics(truth = Post_Semester_GPA, estimate = Pre_Semester_GPA)
+   
+list(Model_Metrics=model_metrics, Baseline_Metrics=baseline_metrics)
+```
+
+As we can see, the model shows a lesser loss both with the RMSE and the MAE metrics. 
+Also the RSQ is closer to 1. In a nutshell: This model seems to perform good.
 
 #### Feature importance
 
