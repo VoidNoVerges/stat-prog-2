@@ -18,7 +18,7 @@ ai_usage_gpa_change <- ggplot(data, aes(x = Percentage_Of_AI_Usage, y = GPA_Chan
   xlim(0.0, 1.0) +
   ylim(-1.1, 1.1) +
   labs(
-    title = "GPA change caused by gernative AI usage",
+    title = "GPA change caused by generative AI usage",
     x = "Generative AI usage percentage",
     y = "GPA change over the semester"
   ) +
@@ -31,15 +31,6 @@ ai_usage_gpa_change_by_majors <- ai_usage_gpa_change +
   # scales = "free_x" for enforcing visibility of x-scale
   facet_wrap(~Major_Category, ncol = 3, nrow = 2, scales = "free_x") +
   theme(panel.spacing = unit(1, "cm")) +
-  labs(title = "GPA change caused by gernative AI usage faceted by majors")
+  labs(title = "GPA change caused by generative AI usage faceted by majors")
 
 ggsave(here("docs", "eda_files", "ai_usage_gpa_change_by_majors.png"), ai_usage_gpa_change_by_majors)
-
-"
-These plots indicate following trend for all majors:
-If the generative AI hours are less than half of the total study hours it doesn't
-seem to have effect on the GPA change. However, around the 50% mark there is a small linear
-decrease of the GPA change in favor of the traditional study hours.
-These plots also show as a side effect that there are some people with heavy AI usage
-who get an extraordinary worse GPA change than the rest.
-"
