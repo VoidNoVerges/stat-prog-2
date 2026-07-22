@@ -87,6 +87,15 @@ build_combinations <- function(pre_semester_gpa, major_category, year_of_study, 
       )
 }
 
+get_feature_importance <- function(model_fit) {
+   booster <- extract_fit_engine(model_fit)
+
+   importance <- as_tibble(lgb.importance(booster, percentage = TRUE)) |>
+      arrange(desc(Gain))
+
+   importance
+}
+
 give_recommendations <- function(built_combinations) {
    predicted_combinations <- built_combinations |>
       mutate(
@@ -104,3 +113,5 @@ give_recommendations <- function(built_combinations) {
          Predicted_Post_Semester_GPA
       )
 }
+
+print(check_feature_importance(model_fit))
