@@ -10,7 +10,7 @@ date: today
 The synthetic dataset is called 
 ["Impact of Ai on Students"](https://www.kaggle.com/datasets/laveshjadon/ai-impact-on-students?select=ai_student_impact_dataset+%281%29.csv)
 and is created by laveshjadon.  
-It is licenced under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
+It is licensed under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
 
 *Content:*  
 The synthetic dataset "Impact of Ai on Students" is about the generative AI usage of students and its effects on them. 
@@ -34,8 +34,7 @@ for the following reasons:
 *1. In which majors is the GPA most affected by heavier AI Usage?*  
 *2. How can AI be used for the best GPA score?*
 
-The audience for this analysis is students who want to understand how good AI is
-and normal to use in their field for a better grade. 
+The audience for this analysis is students who want to understand  how they can use AI for improving their grade and where they should avoid using it. 
 The overall message is more important than the details for this scenario. 
 So simple visualizations like graphs without clutter should work best.
 
@@ -67,6 +66,7 @@ ggplot(data, aes(x = Paid_Subscription, y = Tool_Diversity)) + geom_boxplot()
 
 Interestingly, the tool diversity doesn't seem to be affected by the student
 using a paid subscription or not.
+
 ```{r}
 ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours)) + geom_boxplot()
 ```
@@ -91,7 +91,7 @@ ggplot(data, aes(x = Major_Category, y = Weekly_GenAI_Hours / (Weekly_GenAI_Hour
   )
 ```
 
-Luckily we can see that nothing truely changes, when also considering the traditional study hours.
+Luckily we can see that nothing truly changes, when also considering the traditional study hours.
 
 ## Analysis Plan
 
@@ -101,7 +101,7 @@ the students' performance affected by AI.
 For question 1, we also need the weekly generative AI study hours and the
 traditional study hours to measure how heavy the students' AI usage is in percentages.
 To compare the majors in the first place, we need the accordingly called column. 
-As we have 3 dimensions now, faceting between the majors is the way to avoid clutter.
+As we have 3 dimensions now, faceting by the majors is the way to avoid clutter.
 
 For question 2, the idea is to create a model which can predict how students should use AI to improve the GPA score, 
 given some information about the student. This will surely use most columns of the dataset.
