@@ -325,8 +325,7 @@ This results in 450 individual plots:
 ### Discussion
 
 Looking at the plot there are some things that can be said right away:  
-The __input parameters__ `Major_Category`, `Year_of_Study`, `Institutional_Policy`, `Pre_Semester_GPA`, 
-and the target variable `Post_Semester_GPA` __don't matter__ for the suggestion, 
+The __input parameters__ `Major_Category`, `Year_of_Study`, `Institutional_Policy` and `Pre_Semester_GPA` __don't matter__ for the suggestion, 
 as every plot within the six suggestions looks the same. 
 In conclusion the __suggestions are independent__ of the student's situation given the 
 input parameters.  
